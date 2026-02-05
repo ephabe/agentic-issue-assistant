@@ -13,6 +13,7 @@
 ## NFR影響
 - `none` | `security` | `observability` | `operability` | `multiple`
 - `none` 以外の場合: 同Milestoneの統合ハードニングIssueを記載
+- `NFR影響 = security` の監査/ハードニングIssueは `SEC-###` を使用
 - Hardening Issue: `<ISSUE-ID>`
 
 ## Acceptance Criteria（達成する機能要件）

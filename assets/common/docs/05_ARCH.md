@@ -1,7 +1,7 @@
 # Architecture
 
-## このドキュメントで定義すること
-- domain / infra の責務境界
+## Defines
+- Architecture boundary contract.
 - 依存方向の制約と外部接続の集約方針
 - キャッシュ戦略（key/TTL）
 

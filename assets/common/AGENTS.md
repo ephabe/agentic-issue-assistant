@@ -15,16 +15,16 @@
 
 ## External dependencies policy
 - 外部APIはテストで直接叩かない（fixtures/mock）
-- 決済/Webhook/実外部疎通は `docs/07_RUNBOOK.md` で手動確認
-- セキュリティ要件は `docs/10_SECURITY.md` を参照して実装判断する
+- 決済/Webhook/実外部疎通は `docs/08_RUNBOOK.md` で手動確認
+- セキュリティ要件は `docs/07_SECURITY.md` を参照して実装判断する
 
 ## Local DoD（手動）
 - 結合テスト（開発環境前提）
-- 実外部API疎通 / 決済 / Webhook / メール等は `docs/07_RUNBOOK.md` に従う
+- 実外部API疎通 / 決済 / Webhook / メール等は `docs/08_RUNBOOK.md` に従う
 
 ## 開発フロー
 - 詳細は `docs/DEVFLOW.md` を参照
-- `docs/09_IMPLEMENTATION_PLAN.md` → `backlog/issues/`（1 Issue = 1ファイル）→ 実装/検証
+- `docs/10_IMPLEMENTATION_PLAN.md` → `backlog/issues/`（1 Issue = 1ファイル）→ 実装/検証
 - Issue発行/消化はMilestone単位で回す（Exit criteria 完了で次へ）
 
 ## Issue指定時の挙動

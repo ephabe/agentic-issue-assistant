@@ -1,7 +1,7 @@
 # Testing
 
-## このドキュメントで定義すること
-- CIで必須とする検証項目（lint/typecheck/unit）
+## Defines
+- Testing and DoD contract.
 - Local DoDに回す検証範囲（結合/E2E/実外部疎通）
 - fixture/mock/seed の運用方針
 

@@ -1,7 +1,7 @@
 # PRD
 
-## このドキュメントで定義すること
-- 解く問題と対象ユーザー
+## Defines
+- Product requirements for MVP.
 - MVPで提供する価値と成功条件
 - 今回やらないこと（Non-goals）
 

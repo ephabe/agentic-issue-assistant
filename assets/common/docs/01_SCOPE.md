@@ -1,7 +1,7 @@
 # Scope
 
-## このドキュメントで定義すること
-- 機能の優先順位（MVP / Next / Later）
+## Defines
+- Feature scope by phase.
 - 各機能の実装タイミングの境界
 
 ## MVP

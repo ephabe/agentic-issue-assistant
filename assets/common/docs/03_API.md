@@ -1,7 +1,7 @@
 # API Contract
 
-## このドキュメントで定義すること
-- エンドポイントごとの入出力契約
+## Defines
+- API interface contract.
 - エラー仕様（code/message、HTTPステータス）
 - キャッシュ/レート制限などの運用ルール
 

@@ -1,7 +1,7 @@
 # Security Requirements
 
-## このドキュメントで定義すること
-- 保護対象（ユーザーデータ、機密情報、決済情報など）
+## Defines
+- Security requirements baseline.
 - 認証/認可の境界と権限制御
 - データ保護、秘密情報管理、監査ログ要件
 - セキュリティ検証とリリース判定条件

@@ -1,9 +1,7 @@
 # Agentic開発フロー
 
-この文書は、Docs → 実装計画（Milestones）→ Issue起票 → 実装/検証 の一連の流れを定義する。
-
-## このドキュメントで定義すること
-- Docs から実装までの手順と責務
+## Defines
+- End-to-end development flow.
 - Milestone単位での運用ルール
 - Issue起票と消化サイクルの原則
 
@@ -14,7 +12,7 @@
 
 ## フロー概要
 1. Docsを作り込む
-2. `09_IMPLEMENTATION_PLAN.md` でMilestoneを定義する
+2. `10_IMPLEMENTATION_PLAN.md` でMilestoneを定義する
 3. Milestoneの内容から `backlog/issues/` に Issue を起票する
 4. Milestoneごとに「統合ハードニングIssue」を1件起票する
 5. Issueを消化する（ブランチ → 実装 → テスト → コミット → マージ）
@@ -29,7 +27,7 @@
 - この工程は Implementation Plan の M0（Repo bootstrap）に相当する
 
 ## Implementation Plan（Milestones）
-- `09_IMPLEMENTATION_PLAN.md` にMilestoneを定義する
+- `10_IMPLEMENTATION_PLAN.md` にMilestoneを定義する
 - Implementation PlanにはIssue一覧を記述しない
 - Milestoneは目的・成果・DoD・リスクなど「計画の骨格」を定義する
 
@@ -46,6 +44,7 @@
 ## 統合ハードニングIssue（Milestone単位）
 - 各Milestoneで1件作成し、NFR影響ありの対応を集約する
 - 代表例: セキュリティ要件の反映、監視/アラート整備、Runbook更新
+- セキュリティ監査Issueは `SEC-###` プレフィックスを使用する
 - Milestone完了条件として、このIssueの完了を必須にする
 
 ## Issue消化（実装サイクル）
