@@ -38,7 +38,7 @@
 
 ### Issue-ID の命名ルール
 - **必須**：`id` は一意で不変（発行後に変更しない）
-- **重複防止**：GitHub Issue本文に `BACKLOG_ID: <id>` を入れて照合
+- **重複防止**：GitHub Issue本文に `ISSUE-ID: <id>` を入れて照合
 - **命名**：`<PREFIX>-<3桁>`（例：`MVP-010`）
 - **PREFIXで分類**
     -   `MVP-###`：本筋（計画書に載る）

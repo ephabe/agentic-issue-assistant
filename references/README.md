@@ -25,7 +25,7 @@ Modes:
 ## GitHub scripts
 - `scripts/gh/ensure_labels.sh` は `gh` CLI を使い、存在しないラベルを作成する。
 - `scripts/gh/create_issues_from_backlog.sh` は `gh` + `jq` を使用し、`backlog/issues.json` から issue を作成する。
-- `create_issues_from_backlog.sh` の挙動: `id` 必須、`BACKLOG_ID: <id>` で重複検知、タイトルに `[id]` を付与、本文先頭にマーカーを追記。
+- `create_issues_from_backlog.sh` の挙動: `id` 必須、`ISSUE-ID: <id>` で重複検知、タイトルに `[id]` を付与、本文先頭にマーカーを追記。
 
 ## Workflows (概要)
 - Codex Queue: `codex-ready` の最古 issue を `parallel` 件取得し `codex-running` に移行、Codex 実行 → DoD 実行 → 変更があればドラフト PR 作成・`codex-pr-open` 付与・issue へ PR リンクコメント、変更が無ければ `codex-blocked`。

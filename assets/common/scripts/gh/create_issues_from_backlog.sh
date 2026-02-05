@@ -16,7 +16,7 @@ gh auth status >/dev/null 2>&1 || echo "Warning: gh auth status failed. Run: gh 
 
 # Behavior:
 # - Requires each item to have a stable `id`.
-# - Prevents duplicates by searching existing issues for "BACKLOG_ID: <id>".
+# - Prevents duplicates by searching existing issues for "ISSUE-ID: <id>".
 # - Prefixes title with "[<id>]" (unless already present).
 # - Prepends marker line to body (unless already present).
 
