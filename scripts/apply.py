@@ -30,20 +30,15 @@ def copy_tree(src: pathlib.Path, dst: pathlib.Path, mode: str) -> list[str]:
 
 def main() -> int:
     p = argparse.ArgumentParser(description="Apply agentic-flow templates into a target repo.")
-    p.add_argument("--stack", choices=["node", "php"], default="node")
     p.add_argument("--mode", choices=["safe", "overwrite"], default="safe")
     p.add_argument("--repo", default=".", help="Target repository root")
     args = p.parse_args()
 
     skill_dir = pathlib.Path(__file__).resolve().parent.parent
     common = skill_dir / "assets" / "common"
-    overlay = skill_dir / "assets" / "stacks" / ("node-pnpm" if args.stack == "node" else "php")
 
     if not common.exists():
         print(f"ERROR: common assets not found: {common}", file=sys.stderr)
-        return 2
-    if not overlay.exists():
-        print(f"ERROR: overlay assets not found: {overlay}", file=sys.stderr)
         return 2
 
     repo = pathlib.Path(args.repo).resolve()
@@ -53,9 +48,8 @@ def main() -> int:
 
     logs = []
     logs += copy_tree(common, repo, args.mode)
-    logs += copy_tree(overlay, repo, args.mode)
 
-    print(f"Applied stack={args.stack} mode={args.mode} to {repo}")
+    print(f"Applied mode={args.mode} to {repo}")
     for line in logs[:2000]:
         print(line)
     if len(logs) > 2000:

@@ -1,13 +1,21 @@
-# AGENTS.md (PHP)
+# AGENTS.md
+
+## このファイルについて
+- この `AGENTS.md` はテンプレート
+- CIコマンド（lint / typecheck / unit）はプロジェクト環境に合わせて必ず編集する
 
 ## Definition of Done (CI)
-- composer lint
-- composer typecheck
-- composer test
+- `<lint-command>`
+- `<typecheck-command>`
+- `<unit-test-command>`
+
+例:
+- Node/pnpm: `pnpm lint` / `pnpm typecheck` / `pnpm test`
+- PHP/composer: `composer lint` / `composer typecheck` / `composer test`
 
 ## External dependencies policy
 - 外部APIはテストで直接叩かない（fixtures/mock）
-- 決済/Webhook/実外部疎通は docs/07_RUNBOOK.md で手動確認
+- 決済/Webhook/実外部疎通は `docs/07_RUNBOOK.md` で手動確認
 
 ## Local DoD（手動）
 - 結合テスト（開発環境前提）
@@ -25,5 +33,6 @@
 - テスト失敗時は修復して再実行し、全 Pass まで繰り返す
 - 仕様変更や追加対応が必要なら別Issueを提案する
 
-## Commands
-- Install: composer install --no-interaction --prefer-dist
+## Commands（環境に合わせて編集）
+- Install: `<install-command>`
+- Dev: `<dev-command>`（任意）

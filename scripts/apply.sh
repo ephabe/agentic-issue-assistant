@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-STACK="${1:-node}"      # node|php
-MODE="${2:-safe}"       # safe|overwrite
-REPO="${3:-.}"          # target path
+if [[ "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+  SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+  python3 "${SCRIPT_DIR}/apply.py" --help
+  echo "Usage: apply.sh [safe|overwrite] [repo]"
+  exit 0
+fi
+
+MODE="${1:-safe}"       # safe|overwrite
+REPO="${2:-.}"          # target path
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
-python3 "${SCRIPT_DIR}/apply.py" --stack "$STACK" --mode "$MODE" --repo "$REPO"
+python3 "${SCRIPT_DIR}/apply.py" --mode "$MODE" --repo "$REPO"
