@@ -1,12 +1,12 @@
 # PRD
 
 ## Defines
-- Product requirements for MVP.
-- MVPで提供する価値と成功条件
+- Project overview and MVP direction.
+- MVPで提供する価値
 - 今回やらないこと（Non-goals）
 
-## Problem
-（何が問題か。1〜3行）
+## Summary
+- （このプロジェクトが何を提供するか。1〜2行）
 
 ## Goal
 - （達成したい価値）
@@ -20,8 +20,9 @@
 - [ ] （MVPの機能）
 - [ ] （MVPの機能）
 
-## Success metrics (MVP)
-- （例：初回表示<=X秒、更新<=Y秒、失敗時の挙動、コスト上限など）
+## Assumptions / Constraints
+- （前提条件）
+- （制約: 期限、予算、依存、法令/規約など）
 
 ## Open questions（必要に応じて）
 - （未決事項があれば記載）
