@@ -27,6 +27,11 @@ Modes:
 - `scripts/gh/create_issues_from_backlog.sh` は `gh` + `jq` を使用し、`backlog/issues.json` から issue を作成する。
 - `create_issues_from_backlog.sh` の挙動: `id` 必須、`ISSUE-ID: <id>` で重複検知、タイトルに `[id]` を付与、本文先頭にマーカーを追記。
 
+## Backlog update (agentic)
+- docs と実装計画（`docs/09_IMPLEMENTATION_PLAN.md`）を読み、`backlog/issues.json` に追記する作業はエージェントが実施する。
+- 既存Issueは変更せず追記のみ。ID重複はスキップし、schemaを守る。
+- 追記時の補助: `scripts/backlog/append_issues.py`（検証 + 重複排除）。
+
 ## Workflows (概要)
 - Codex Queue: `codex-ready` の最古 issue を `parallel` 件取得し `codex-running` に移行、Codex 実行 → DoD 実行 → 変更があればドラフト PR 作成・`codex-pr-open` 付与・issue へ PR リンクコメント、変更が無ければ `codex-blocked`。
 - Codex AutoFix: CI 失敗時に `codex-pr-open` の PR に対して 1 回だけ実行し、`autofix-1` を付与。

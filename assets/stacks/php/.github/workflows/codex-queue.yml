@@ -132,9 +132,11 @@ jobs:
       - name: Create branch
         id: branch
         run: |
+          BASE_BRANCH="${{ vars.CODEX_BASE_BRANCH || 'main' }}"
+          git fetch origin "$BASE_BRANCH"
           ISSUE_NO="${{ matrix.issue.number }}"
           BRANCH="codex/issue-${ISSUE_NO}"
-          git checkout -b "$BRANCH"
+          git checkout -b "$BRANCH" "origin/$BASE_BRANCH"
           echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
 
       - name: Run Codex (edit repo to implement issue)
@@ -144,9 +146,8 @@ jobs:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
           prompt-file: .codex/prompt.txt
           sandbox: workspace-write
-          # Optional: model/effort can be set here.
-          # model: ""
-          # effort: ""
+          model: ${{ vars.CODEX_MODEL || 'gpt-5.2-Codex' }}
+          effort: ${{ vars.CODEX_EFFORT || 'high' }}
 
       - name: Run DoD commands
         run: |
@@ -195,7 +196,7 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               head: branch,
-              base: 'main',
+              base: ${{ vars.CODEX_BASE_BRANCH || 'main' }},
               title: `Issue #${issueNumber}: ${issue.title}`,
               body: [
                 `Closes #${issueNumber}`,

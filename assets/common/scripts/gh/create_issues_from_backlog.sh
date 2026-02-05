@@ -19,12 +19,14 @@ gh auth status >/dev/null 2>&1 || echo "Warning: gh auth status failed. Run: gh 
 # - Prevents duplicates by searching existing issues for "ISSUE-ID: <id>".
 # - Prefixes title with "[<id>]" (unless already present).
 # - Prepends marker line to body (unless already present).
+# - Always adds label "from-backlog".
 
 jq -c '.[]' "$FILE" | while read -r it; do
   id=$(echo "$it" | jq -r '.id // empty')
   title=$(echo "$it" | jq -r '.title')
   body=$(echo "$it" | jq -r '.body')
   labels=$(echo "$it" | jq -r '.labels // [] | join(",")')
+  backlog_label="from-backlog"
 
   if [ -z "$id" ] || [ "$id" = "null" ]; then
     echo "ERROR: missing required field: id (title=$title)" >&2
@@ -54,10 +56,14 @@ $final_body"
   fi
 
   if [ -n "$labels" ]; then
-    gh issue create --title "$final_title" --body "$final_body" --label "$labels"
+    if [[ ",$labels," != *",$backlog_label,"* ]]; then
+      labels="$labels,$backlog_label"
+    fi
   else
-    gh issue create --title "$final_title" --body "$final_body"
+    labels="$backlog_label"
   fi
+
+  gh issue create --title "$final_title" --body "$final_body" --label "$labels"
 
   echo "created: $id $title"
 done

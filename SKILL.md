@@ -26,6 +26,8 @@ request_user_input:
     description: `GitHub ラベル作成スクリプトのみ実行する。`
   - label: `create github issues`
     description: `backlog から GitHub Issue を作成する。`
+  - label: `append backlog from docs`
+    description: `docs/ と 09_IMPLEMENTATION_PLAN を読み、backlog/issues.json に追記する。`
 
 ## Actions
 ### install (default, node)
@@ -61,3 +63,20 @@ Run only (repo root):
 
 Then remind:
 - (no additional reminders)
+
+### append backlog from docs (agentic)
+Run only (repo root):
+- Read `docs/README.md` and `docs/09_IMPLEMENTATION_PLAN.md`. Load the referenced docs needed to author each issue body.
+- Collect issue IDs and short descriptions from each milestone's `Issues:` list (`- [ISSUE-ID] summary`). Ignore the `Sample` section if it still exists.
+- Load `backlog/issues.json` and append only missing IDs. Do not modify existing items. Preserve order by the plan.
+- For each new issue, generate:
+  - `id`: from the plan.
+  - `title`: short summary (>= 3 chars).
+  - `body`: based on docs + plan (>= 10 chars), including context, scope/acceptance, and doc references.
+  - `labels` (optional): only if you know the labels exist.
+- Enforce schema: only `id`, `title`, `body`, `labels` keys. Keep ISSUE-ID unique.
+- Optionally validate/append via `python3 scripts/backlog/append_issues.py --input <draft.json>` after drafting the new items.
+
+Then remind:
+- 既存Issueは修正せず追記のみ（変更が必要なら新規Issueを起票）。
+- 重複IDはスキップした旨を伝える。

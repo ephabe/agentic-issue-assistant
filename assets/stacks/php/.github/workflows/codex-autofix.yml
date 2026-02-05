@@ -112,6 +112,8 @@ jobs:
           openai-api-key: ${{ secrets.OPENAI_API_KEY }}
           prompt-file: .codex/prompt.txt
           sandbox: workspace-write
+          model: ${{ vars.CODEX_MODEL || 'gpt-5.2-Codex' }}
+          effort: ${{ vars.CODEX_EFFORT || 'high' }}
 
       - name: Re-run DoD commands
         if: ${{ steps.guard.outputs.is_codex == 'true' && steps.guard.outputs.already_tried != 'true' }}
