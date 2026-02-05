@@ -1,0 +1,17 @@
+# Testing
+
+## CI DoD (must)
+- lint
+- typecheck
+- unit tests
+（※コマンド名はAGENTS.md / CI workflowに合わせる）
+
+## CI rules
+- 外部APIへ直接接続しない（fixtures/mock）
+- DBが必要なら「捨てDB + 最小seed」
+- E2E/結合はLocal DoDへ
+
+## Local DoD
+- 結合テスト（開発環境前提）
+- 実外部API疎通
+- 決済/Webhook/メール等の疎通

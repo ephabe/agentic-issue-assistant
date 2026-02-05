@@ -1,0 +1,4 @@
+interface:
+  display_name: "Agentic Flow Installer"
+  short_description: "Apply CI + Codex Queue + AutoFix + docs skeleton into a repo"
+  brand_color: "#3B82F6"

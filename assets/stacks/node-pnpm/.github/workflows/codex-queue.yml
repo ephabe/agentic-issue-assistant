@@ -1,0 +1,264 @@
+name: Codex Queue (Issue -> PR)
+
+on:
+  workflow_dispatch:
+    inputs:
+      parallel:
+        description: "How many issues to process in parallel (WIP limit)"
+        required: true
+        default: "2"
+
+concurrency:
+  group: codex-queue
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  pick:
+    runs-on: ubuntu-latest
+    outputs:
+      issues_json: ${{ steps.pick.outputs.issues_json }}
+    steps:
+      - name: Pick issues (label: codex-ready)
+        id: pick
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const parallel = Number(core.getInput('parallel', { required: true }));
+            const labelReady = 'codex-ready';
+            const labelRunning = 'codex-running';
+
+            // list open issues with labelReady (exclude PRs)
+            const issues = await github.paginate(github.rest.issues.listForRepo, {
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              state: 'open',
+              labels: labelReady,
+              per_page: 100,
+            });
+
+            const filtered = issues.filter(i => !i.pull_request);
+            // oldest first
+            filtered.sort((a,b) => new Date(a.created_at) - new Date(b.created_at));
+            const picked = filtered.slice(0, parallel);
+
+            // lock them: remove ready, add running
+            for (const it of picked) {
+              await github.rest.issues.addLabels({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: it.number,
+                labels: [labelRunning],
+              });
+              await github.rest.issues.removeLabel({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: it.number,
+                name: labelReady,
+              }).catch(() => {});
+            }
+
+            const out = picked.map(it => ({ number: it.number }));
+            core.setOutput('issues_json', JSON.stringify(out));
+
+  run:
+    needs: pick
+    if: ${{ needs.pick.outputs.issues_json != '[]' && needs.pick.outputs.issues_json != '' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      matrix:
+        issue: ${{ fromJSON(needs.pick.outputs.issues_json) }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 9
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: pnpm
+
+      # Install deps BEFORE Codex (Codex sandbox disables network by default)
+      - run: pnpm i --frozen-lockfile
+
+      - name: Fetch issue + prepare Codex prompt file
+        id: prep
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const fs = require('fs');
+            const issueNumber = Number('${{ matrix.issue.number }}');
+            const { data: issue } = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+            });
+
+            const prompt = [
+              `You are implementing GitHub Issue #${issue.number} in repo ${context.repo.owner}/${context.repo.repo}.`,
+              ``,
+              `Issue title: ${issue.title}`,
+              `Issue body:`,
+              `----`,
+              `${issue.body || ''}`,
+              `----`,
+              ``,
+              `Rules:`,
+              `- Follow AGENTS.md.`,
+              `- Do NOT add devcontainer or docker-compose.`,
+              `- Keep changes minimal and focused.`,
+              `- Do NOT run git commit/push; only edit files and run tests.`,
+              ``,
+              `Definition of Done:`,
+              `- pnpm lint`,
+              `- pnpm typecheck`,
+              `- pnpm test`,
+              ``,
+              `Task: Implement the issue, ensure DoD passes, and leave concise notes about what changed.`,
+            ].join('\n');
+
+            fs.mkdirSync('.codex', { recursive: true });
+            fs.writeFileSync('.codex/prompt.txt', prompt, 'utf8');
+
+      - name: Create branch
+        id: branch
+        run: |
+          ISSUE_NO="${{ matrix.issue.number }}"
+          BRANCH="codex/issue-${ISSUE_NO}"
+          git checkout -b "$BRANCH"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+
+      - name: Run Codex (edit repo to implement issue)
+        id: run_codex
+        uses: openai/codex-action@v1
+        with:
+          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          prompt-file: .codex/prompt.txt
+          sandbox: workspace-write
+          # Optional: model/effort can be set here.
+          # model: ""
+          # effort: ""
+
+      - name: Run DoD commands
+        run: |
+          pnpm lint
+          pnpm typecheck
+          pnpm test
+
+      - name: Commit changes (if any)
+        id: commit
+        run: |
+          set -e
+          if [ -z "$(git status --porcelain)" ]; then
+            echo "no_changes=true" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          git config user.name "codex-bot"
+          git config user.email "codex-bot@users.noreply.github.com"
+          git add -A
+          git commit -m "codex: implement issue #${{ matrix.issue.number }}"
+
+      - name: Push branch
+        if: ${{ steps.commit.outputs.no_changes != 'true' }}
+        run: |
+          git push --set-upstream origin "${{ steps.branch.outputs.branch }}"
+
+      - name: Open PR + update labels/comments
+        if: ${{ steps.commit.outputs.no_changes != 'true' }}
+        uses: actions/github-script@v7
+        env:
+          CODEX_FINAL_MESSAGE: ${{ steps.run_codex.outputs.final-message }}
+          BRANCH_NAME: ${{ steps.branch.outputs.branch }}
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const issueNumber = Number('${{ matrix.issue.number }}');
+            const branch = process.env.BRANCH_NAME;
+
+            const { data: issue } = await github.rest.issues.get({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+            });
+
+            // create PR as draft
+            const pr = await github.rest.pulls.create({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              head: branch,
+              base: 'main',
+              title: `Issue #${issueNumber}: ${issue.title}`,
+              body: [
+                `Closes #${issueNumber}`,
+                ``,
+                `Codex notes:`,
+                `----`,
+                (process.env.CODEX_FINAL_MESSAGE || '').trim(),
+                `----`,
+              ].join('\n'),
+              draft: true,
+            });
+
+            // label PR + issue
+            const labelPrOpen = 'codex-pr-open';
+            const labelRunning = 'codex-running';
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr.data.number,
+              labels: [labelPrOpen],
+            });
+
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              labels: [labelPrOpen],
+            });
+
+            // comment on issue with PR link
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: `PR created: #${pr.data.number} (${pr.data.html_url})`,
+            });
+
+            // remove running label (keep pr-open)
+            await github.rest.issues.removeLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              name: labelRunning,
+            }).catch(() => {});
+
+      - name: Mark blocked if no changes
+        if: ${{ steps.commit.outputs.no_changes == 'true' }}
+        uses: actions/github-script@v7
+        with:
+          github-token: ${{ github.token }}
+          script: |
+            const issueNumber = Number('${{ matrix.issue.number }}');
+            await github.rest.issues.addLabels({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              labels: ['codex-blocked'],
+            });
+            await github.rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: issueNumber,
+              body: 'No file changes were produced. Marked as codex-blocked for human triage.',
+            });
