@@ -1,17 +1,21 @@
 # Docs Index
 
 このディレクトリは「仕様＝契約」を置く。読み物ではなく、実装と検証の基準。
+各ドキュメントは「何を定義する文書か」を先頭で明確にする。
 
 ## まず読む（順番）
 1) 00_PRD.md
 2) 01_SCOPE.md
 3) 02_UX.md
 4) 03_API.md
-5) 06_TESTING.md
-6) 07_RUNBOOK.md
+5) 04_DATA.md
+6) 05_ARCH.md
+7) 10_SECURITY.md
+8) 06_TESTING.md
+9) 07_RUNBOOK.md
 
 ## ドキュメント一覧
-- **00_PRD.md**: 目的 / MVP / 非ゴール / 成功条件 / TBD
+- **00_PRD.md**: 目的 / MVP / 非ゴール / 成功条件 / 未決事項
 - **01_SCOPE.md**: 機能一覧と優先度（MVP / Next / Later）
 - **02_UX.md**: 画面、状態（loading/ok/error）、更新ポリシー
 - **03_API.md**: API契約（入出力・エラー・キャッシュ・レート制限）
@@ -21,6 +25,7 @@
 - **07_RUNBOOK.md**: 手動スモーク、リリース前チェック、環境変数、障害対応
 - **08_DECISIONS.md**: 決定ログ（日付・結論・理由だけ）
 - **09_IMPLEMENTATION_PLAN.md**: 実装計画（マイルストーン/成果/DoD/リスク/備考）
+- **10_SECURITY.md**: セキュリティ要件（認証/認可、保護対象、Secrets、監査、検証）
 - **DEVFLOW.md**: 開発フロー
 
 ## 運用ルール
@@ -28,6 +33,7 @@
 - APIレスポンス/TTL/エラー → 03_API.md
 - 画面状態/更新頻度 → 02_UX.md
 - DB/制約/プラン差/認可 → 04_DATA.md
+- 認証/認可/Secrets/脆弱性対応 → 10_SECURITY.md
 - CIで回す範囲/fixture/seed → 06_TESTING.md
 - 手動スモーク → 07_RUNBOOK.md
 - 判断が絡む変更 → 08_DECISIONS.md

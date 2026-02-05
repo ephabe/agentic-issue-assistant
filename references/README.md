@@ -14,7 +14,7 @@ Modes:
 - `overwrite`: 既存ファイルも上書きする。
 
 ## What gets installed
-- `docs/` 一式（`00_PRD.md`〜`09_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`README.md`）
+- `docs/` 一式（`00_PRD.md`〜`10_SECURITY.md`、`DEVFLOW.md`、`README.md`）
 - `backlog/` スケルトン（`INDEX.md`、`ISSUE-template.md`、`issues/`、`issues/M0/CHORE-001..003`）
 - `AGENTS.md`（CIコマンドは環境に応じて編集）
 

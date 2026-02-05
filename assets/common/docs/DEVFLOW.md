@@ -2,6 +2,11 @@
 
 この文書は、Docs → 実装計画（Milestones）→ Issue起票 → 実装/検証 の一連の流れを定義する。
 
+## このドキュメントで定義すること
+- Docs から実装までの手順と責務
+- Milestone単位での運用ルール
+- Issue起票と消化サイクルの原則
+
 ## 目的
 - 先にDocsで合意・前提・仕様を固め、実装の迷いを減らす
 - Implementation Plan を「計画の唯一の真実」にし、Issueを計画から起票する
@@ -11,12 +16,13 @@
 1. Docsを作り込む
 2. `09_IMPLEMENTATION_PLAN.md` でMilestoneを定義する
 3. Milestoneの内容から `backlog/issues/` に Issue を起票する
-4. Issueを消化する（ブランチ → 実装 → テスト → コミット → マージ）
-5. Issueがなくなるまで 3-4 を繰り返す
-6. Milestoneの Exit criteria を評価し、すべて完了したら次のMilestoneへ
+4. Milestoneごとに「統合ハードニングIssue」を1件起票する
+5. Issueを消化する（ブランチ → 実装 → テスト → コミット → マージ）
+6. Issueがなくなるまで 3-5 を繰り返す
+7. Milestoneの Exit criteria と品質ゲートを評価し、すべて完了したら次のMilestoneへ
 
 ## Docsの作り込みルール
-- まず `docs/` の章立て（00〜09）を埋める
+- まず `docs/` の章立て（00〜10）を埋める
 - 章が大きくなる場合はディレクトリ化して細分化する
 - ファイルを分割した場合は `docs/README.md` に追加する
 - DocsはImplementation Plan / Issueの出典として必ず参照される
@@ -34,6 +40,13 @@
 - 形式は `backlog/issues/M{N}/<ID>_<slug>.md`
 - すべてのIssueは `ISSUE-ID: <ID>` を含む
 - Issue本文は関連の深いDocsを引用・参照する（最大3リンクまで）
+- すべてのIssueに `NFR影響` を記載する（`none` / `security` / `observability` / `operability` / `multiple`）
+- `NFR影響` が `none` 以外なら、同Milestoneの統合ハードニングIssueへ集約する
+
+## 統合ハードニングIssue（Milestone単位）
+- 各Milestoneで1件作成し、NFR影響ありの対応を集約する
+- 代表例: セキュリティ要件の反映、監視/アラート整備、Runbook更新
+- Milestone完了条件として、このIssueの完了を必須にする
 
 ## Issue消化（実装サイクル）
 1. Issueに対応するブランチを切る
@@ -43,7 +56,7 @@
 
 ## Milestone運用ルール
 - Issue発行と消化のループは、基本的にMilestone単位で行う
-- 現在のMilestoneで新規に発行するIssueがなくなり、DoDをすべて完了してはじめて次のMilestoneのIssue発行が可能になる
+- 現在のMilestoneで新規に発行するIssueがなくなり、DoDと品質ゲートをすべて完了してはじめて次のMilestoneのIssue発行が可能になる
 
 ## GitHub Issue同期（任意）
 - GitHub Issue の使用は必須ではない

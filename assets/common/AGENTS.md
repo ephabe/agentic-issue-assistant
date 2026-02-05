@@ -16,6 +16,7 @@
 ## External dependencies policy
 - 外部APIはテストで直接叩かない（fixtures/mock）
 - 決済/Webhook/実外部疎通は `docs/07_RUNBOOK.md` で手動確認
+- セキュリティ要件は `docs/10_SECURITY.md` を参照して実装判断する
 
 ## Local DoD（手動）
 - 結合テスト（開発環境前提）
@@ -30,6 +31,7 @@
 - 指定されたISSUE-IDの `backlog/issues/` を確認し、本文と参照Docsを読む
 - 受け入れ条件/DoDが曖昧なら着手前に確認する
 - 実装はIssueの範囲に限定し、CI DoDを満たす
+- Issueの `NFR影響` が `none` 以外なら、統合ハードニングIssueとの整合を確認する
 - テスト失敗時は修復して再実行し、全 Pass まで繰り返す
 - 仕様変更や追加対応が必要なら別Issueを提案する
 

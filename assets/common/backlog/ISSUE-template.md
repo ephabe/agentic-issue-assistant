@@ -10,6 +10,11 @@
 ## Scope
 （この機能を成立させるために必ず必要な変更）
 
+## NFR影響
+- `none` | `security` | `observability` | `operability` | `multiple`
+- `none` 以外の場合: 同Milestoneの統合ハードニングIssueを記載
+- Hardening Issue: `<ISSUE-ID>`
+
 ## Acceptance Criteria（達成する機能要件）
 - [ ] （CIで判定できる条件）
 - [ ] （UI/API/型/エラーなど）
@@ -21,6 +26,7 @@
 ## DoD（完了判定）
 - [ ] Acceptance Criteria をすべて満たす
 - [ ] Testsを全 Pass（CI 含む）
+- [ ] `NFR影響` が `none` 以外なら統合ハードニングIssueへ反映済み
 - [ ] 影響範囲の Docs, backlog/INDEX を更新する
 
 ## Manual QA
