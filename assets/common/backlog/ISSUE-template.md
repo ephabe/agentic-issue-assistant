@@ -2,7 +2,7 @@
 - ISSUE-ID: 
 
 ## Docs
-（深い関連があるDocへのLink）
+（深い関連があるDocへのLink、最大3リンク）
 
 ## Goal
 （何を実現するか。1文）

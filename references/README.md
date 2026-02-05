@@ -16,10 +16,10 @@ Modes:
 ## What gets installed
 - `docs/` 一式（`00_PRD.md`〜`09_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`README.md`）
 - `backlog/` スケルトン（`INDEX.md`、`ISSUE-template.md`、`issues/`、`issues/M0/CHORE-001..003`）
-- 選択したテンプレートに対応する `AGENTS.md` と `README.md`（node/pnpm または php/composer）
+- 選択したテンプレートに対応する `AGENTS.md`（node/pnpm または php/composer）
 
 ## Backlog update (agentic)
-- docs と実装計画（`docs/09_IMPLEMENTATION_PLAN.md`）を読み、`backlog/issues/` に Issue ファイルを追加する作業はエージェントが指示を受けて実施する想定。
+- docs と実装計画（`docs/09_IMPLEMENTATION_PLAN.md`）を読み、`backlog/issues/` に Issue ファイルを追加する作業はエージェントが指示を受けて実施する。
 - 既存Issueは変更せず追記のみ。ID重複はスキップする。
 
 ## ISSUE-ID

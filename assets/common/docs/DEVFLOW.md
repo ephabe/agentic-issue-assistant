@@ -18,7 +18,7 @@
 ## Docsの作り込みルール
 - まず `docs/` の章立て（00〜09）を埋める
 - 章が大きくなる場合はディレクトリ化して細分化する
-- 分割した場合は `docs/README.md` にリンクを追加する
+- ファイルを分割した場合は `docs/README.md` に追加する
 - DocsはImplementation Plan / Issueの出典として必ず参照される
 - この工程は Implementation Plan の M0（Repo bootstrap）に相当する
 
@@ -46,5 +46,5 @@
 - 現在のMilestoneで新規に発行するIssueがなくなり、DoDをすべて完了してはじめて次のMilestoneのIssue発行が可能になる
 
 ## GitHub Issue同期（任意）
-- GitHub Issue管理は必須ではない
-- 同期する場合は別途スクリプトを作成して運用する
+- GitHub Issue の使用は必須ではない
+- 付加要素として同期する場合は別途スクリプトを作成して運用する

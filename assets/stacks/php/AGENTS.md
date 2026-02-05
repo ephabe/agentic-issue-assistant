@@ -9,15 +9,20 @@
 - 外部APIはテストで直接叩かない（fixtures/mock）
 - 決済/Webhook/実外部疎通は docs/07_RUNBOOK.md で手動確認
 
+## Local DoD（手動）
+- 結合テスト（開発環境前提）
+- 実外部API疎通 / 決済 / Webhook / メール等は `docs/07_RUNBOOK.md` に従う
+
 ## 開発フロー
 - 詳細は `docs/DEVFLOW.md` を参照
-- Docs → `09_IMPLEMENTATION_PLAN.md` → `backlog/issues/`（1 Issue = 1ファイル）→ 実装/検証
+- `docs/09_IMPLEMENTATION_PLAN.md` → `backlog/issues/`（1 Issue = 1ファイル）→ 実装/検証
 - Issue発行/消化はMilestone単位で回す（Exit criteria 完了で次へ）
 
 ## Issue指定時の挙動
 - 指定されたISSUE-IDの `backlog/issues/` を確認し、本文と参照Docsを読む
 - 受け入れ条件/DoDが曖昧なら着手前に確認する
 - 実装はIssueの範囲に限定し、CI DoDを満たす
+- テスト失敗時は修復して再実行し、全 Pass まで繰り返す
 - 仕様変更や追加対応が必要なら別Issueを提案する
 
 ## Commands
