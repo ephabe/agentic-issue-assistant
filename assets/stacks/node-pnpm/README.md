@@ -1,1 +1,1 @@
-Node overlay: workflows and AGENTS.md for pnpm.
+Node overlay: AGENTS.md for pnpm.

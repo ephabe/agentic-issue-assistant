@@ -51,9 +51,6 @@ def main() -> int:
         print(f"ERROR: repo not found: {repo}", file=sys.stderr)
         return 2
 
-    if not (repo / ".git").exists():
-        print(f"WARNING: {repo} has no .git directory. If this is not the repo root, pass --repo <git-root>.")
-
     logs = []
     logs += copy_tree(common, repo, args.mode)
     logs += copy_tree(overlay, repo, args.mode)
@@ -64,10 +61,6 @@ def main() -> int:
     if len(logs) > 2000:
         print(f"... ({len(logs)-2000} more lines omitted)")
 
-    print("\nNext:")
-    print("- Create labels once: bash scripts/gh/ensure_labels.sh")
-    print("- Add GitHub Secret OPENAI_API_KEY")
-    print("- Add codex-ready to a few issues, then run Actions: Codex Queue")
     return 0
 
 if __name__ == "__main__":

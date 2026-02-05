@@ -1,1 +1,1 @@
-PHP overlay: workflows and AGENTS.md for composer.
+PHP overlay: AGENTS.md for composer.
