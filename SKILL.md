@@ -4,7 +4,7 @@ description: Apply agentic workflow templates into a Git repo. Combines common d
 ---
 
 ## When to use
-When the user wants to install the “Actions内で実装まで完結” workflow into a repo.
+When the user wants to install the “End-to-end implementation within Actions” workflow into a repo.
 
 ## Defaults
 - stack: node
