@@ -31,7 +31,7 @@ jq -c '.[]' "$FILE" | while read -r it; do
     exit 1
   fi
 
-  marker="BACKLOG_ID: $id"
+  marker="ISSUE-ID: $id"
 
   # Skip duplicates by marker
   if gh issue list --state all --search ""$marker"" --json number -q '.[].number' | grep -Eq '^[0-9]+$'; then

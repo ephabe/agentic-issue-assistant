@@ -40,7 +40,7 @@ Modes:
 4) Run workflow: `Codex Queue (Issue -> PR)` with parallel=2
 
 
-## Backlog ID
+## ISSUE-ID
 - `backlog/issues.json` の各項目に `id` を必ず付ける（重複発行防止）。
 
 ## Notes / Known issues
