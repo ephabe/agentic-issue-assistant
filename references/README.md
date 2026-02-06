@@ -12,8 +12,8 @@ Behavior:
 - 配置対象と同名のファイルが1つでも既に存在する場合、インストールは中止される（何も書き込まない）。
 
 ## What gets installed
-- `docs/` 一式（`00_PRD.md`〜`10_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`README.md`）
-- `backlog/` スケルトン（`INDEX.md`、`ISSUE-template.md`、`issues/`、`issues/M0/CHORE-001..003`）
+- `docs/` 一式（`00_PRD.md`〜`10_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`ISSUE.md`、`README.md`）
+- `backlog/` スケルトン（`INDEX.md`、`ISSUE-template.md`、`FINALIZATION-template.md`、`issues/`、`issues/M0/CHORE-001..003`）
 - `AGENTS.md`（CIコマンドは環境に応じて編集）
 
 ## Backlog update (agentic)

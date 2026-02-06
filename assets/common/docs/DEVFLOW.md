@@ -7,57 +7,24 @@
 
 ## 目的
 - 先にDocsで合意・前提・仕様を固め、実装の迷いを減らす
-- Implementation Plan を「計画の唯一の真実」にし、Issueを計画から起票する
+- Implementation Plan を「計画の唯一の参照元」とし、Issueを計画から起票する
 - Issue駆動で実装・検証・マージを繰り返し、確実に前進する
 
-## フロー概要
-1. Docsを作り込む
-2. `10_IMPLEMENTATION_PLAN.md` でMilestoneを定義する
-3. Milestoneの内容から `backlog/issues/` に Issue を起票する
-4. M1以降のMilestoneごとに「統合ハードニングIssue」を1件起票する
-5. Issueを消化する（ブランチ → 実装 → テスト → コミット → マージ）
-6. Issueがなくなるまで 3-5 を繰り返す
-7. Milestoneの Exit criteria と品質ゲートを評価し、すべて完了したら次のMilestoneへ
+## 初期配置後の最初のアクション
+- `backlog/issues/M0/` の初期Issue（`CHORE-001`〜`CHORE-003`）を消化し、`docs/`、`AGENTS.md`、CI の基盤を整える
+- M0の作業として `docs/10_IMPLEMENTATION_PLAN.md` に M1以降のMilestoneを定義する
+- M0（Repo bootstrap）が完了するまで、M1以降のIssueは起票/着手しない
 
-## Docsの作り込みルール
-- まず `docs/` の章立て（00〜10）を埋める
-- 章が大きくなる場合はディレクトリ化して細分化する
-- ファイルを分割した場合は `docs/README.md` に追加する
-- DocsはImplementation Plan / Issueの出典として必ず参照される
-- この工程は Implementation Plan の M0（Repo bootstrap）に相当する
+## フロー
+1. 対象確定: 未完了の次Milestoneを1つだけ対象にする（複数Milestoneを同時に起票しない）
+2. 初期起票: 対象Milestoneの通常Issueを起票する
+3. 追加起票: `NFR影響` に追加対応が必要なら追加ISSUEを起票し、順序が必要なら `前提ISSUE` を指定する
+4. Finalization起票: Milestone Finalization Issue（`FINALIZATION-###`）を1件起票する
+5. 通常Issue消化: 対象Milestoneの通常Issueをすべて完了する（この間、応急対応として `FIX-###` の追加起票を許可する）
+6. Finalization実施: 通常Issue完了後に Milestone Finalization Issue に着手する（この間も、応急対応として `FIX-###` の追加起票を許可する）
+7. 完了確定: Milestone Finalization Issue の完了をもって当該Milestone完了とし、以後は同Milestoneへの新規Issue起票を原則禁止する
+8. 反復: 次の未完了Milestoneへ進み、1〜7を繰り返す
 
-## Implementation Plan（Milestones）
-- `10_IMPLEMENTATION_PLAN.md` にMilestoneを定義する
-- Implementation PlanにはIssue一覧を記述しない
-- Milestoneは目的・成果・DoD・リスクなど「計画の骨格」を定義する
-
-## Issue起票（1 Issue = 1ファイル）
-- Issueファイルは `backlog/issues/` に作成する
-- 一覧は `backlog/INDEX.md` に記載する
-- テンプレートは `backlog/ISSUE-template.md` を使う
-- 形式は `backlog/issues/M{N}/<ID>_<slug>.md`
-- すべてのIssueは `ISSUE-ID: <ID>` を含む
-- Issue本文は関連の深いDocsのみを引用・参照する
-- M1以降のIssueは `NFR影響` を記載する（`none` / `security` / `observability` / `operability` / `multiple`）
-- M0（Repo bootstrap）のIssue（docs/AGENTS/CI整備）は `NFR影響` を省略できる
-- `NFR影響` が `none` 以外なら、同Milestoneの統合ハードニングIssueへ集約する
-
-## 統合ハードニングIssue（Milestone単位）
-- M1以降の各Milestoneで1件作成し、NFR影響ありの対応を集約する
-- 代表例: セキュリティ要件の反映、監視/アラート整備、Runbook更新
-- セキュリティ監査Issueは `SEC-###` プレフィックスを使用する
-- M0（Repo bootstrap）は対象外とし、M1以降はMilestone完了条件としてこのIssueの完了を必須にする
-
-## Issue消化（実装サイクル）
-1. Issueに対応するブランチを切る
-2. 実装する
-3. テスト・検証する
-4. 完了でコミット & マージする
-
-## Milestone運用ルール
-- Issue発行と消化のループは、基本的にMilestone単位で行う
-- 現在のMilestoneで新規に発行するIssueがなくなり、DoDと品質ゲートをすべて完了してはじめて次のMilestoneのIssue発行が可能になる
-
-## GitHub Issue同期（任意）
-- GitHub Issue の使用は必須ではない
-- 付加要素として同期する場合は別途スクリプトを作成して運用する
+## 詳細参照
+- Issue起票ルールと判断基準の詳細は `docs/ISSUE.md` を参照する
+- 計画のテンプレートは `docs/10_IMPLEMENTATION_PLAN.md` を参照する

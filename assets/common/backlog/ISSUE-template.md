@@ -1,6 +1,10 @@
 # ISSUE-ID
 - ISSUE-ID: 
 
+## テンプレート用途
+- 通常Issue用テンプレート
+- Milestone Finalization Issueは `backlog/FINALIZATION-template.md` を使用
+
 ## Docs
 （深い関連があるDocのみをLink）
 
@@ -10,12 +14,18 @@
 ## Scope
 （この機能を成立させるために必ず必要な変更）
 
+## 前提ISSUE（任意）
+- 前提がある場合は `ISSUE-ID` を1行ずつ列挙（複数可）
+- 記法例: `- CHORE-010` / `- MVP-023`
+- 前提がない場合は `none`
+
 ## NFR影響（M1以降は必須）
-- `none` | `security` | `observability` | `operability` | `multiple`
+- 列挙値（enum）で管理せず、補足情報として自然言語で記載する
+- どのようなリスク・変更・追加対応の必要性があるかを簡潔に説明する
 - M0（Repo bootstrap: docs/AGENTS/CI整備）のIssueでは省略可
-- `none` 以外の場合: 同Milestoneの統合ハードニングIssueを記載（M1以降）
-- `NFR影響 = security` の監査/ハードニングIssueは `SEC-###` を使用
-- Hardening Issue: `<ISSUE-ID>`
+- 複数Issueにまたがる追加対応が必要な場合は、内容に応じて追加ISSUEを起票する（`MVP-` に限らない）
+- 追加ISSUEの処理順が重要な場合は、`前提ISSUE` を指定する
+- 追加ISSUE: `<ISSUE-ID>`（必要な場合のみ）
 
 ## Acceptance Criteria（達成する機能要件）
 - [ ] （CIで判定できる条件）
@@ -28,7 +38,8 @@
 ## DoD（完了判定）
 - [ ] Acceptance Criteria をすべて満たす
 - [ ] Testsを全 Pass（CI 含む）
-- [ ] `NFR影響` を記載したIssueで、`none` 以外なら統合ハードニングIssueへ反映済み
+- [ ] 前提ISSUEがある場合は、対象がすべて完了している
+- [ ] `NFR影響` に追加対応が必要と記載した場合は、追加ISSUEを起票・完了済み
 - [ ] 影響範囲の Docs, backlog/INDEX を更新する
 
 ## Manual QA
