@@ -30,7 +30,10 @@
 - `ISSUE-ID` は `FINALIZATION-###` を使う。
 - このIssueは Milestone を終了するときに取りかかる。
 - 通常Issue消化中および Milestone Finalization Issue 実施中は、応急対応として `FIX-###` を追加起票できる。
-- 前提ISSUEは「当該Milestoneの他Issueすべて」を固定とし、個別列挙しない。
+- 前提ISSUEは「当該Milestoneの `FINALIZATION-###` 以外の全Issue（`FIX-###` を含む）」を固定とし、個別列挙しない。
+- 判定時点は、Finalization Issue を完了にする直前の最新状態とする（着手後に追加されたIssueも対象）。
+- 判定対象Issueは `backlog/INDEX.md` に列挙し、完了時点で全件を完了状態（`[x]`）にする。
+- 判定対象Issueが1件でも未完了なら、Finalization Issue を完了にしてはならない。
 - このIssueの完了をもって、当該Milestoneの完了とセキュリティ/品質担保とする。
 - このIssueの完了後は、同Milestoneへの新規Issue起票を原則禁止とする。
 - 例外で同Milestoneに新規Issueを起票する場合は、理由を `docs/09_DECISIONS.md` に記録する。

@@ -20,10 +20,11 @@
 - 非対象: 新規機能追加、大規模な仕様変更
 
 ## 前提ISSUE（固定）
-- 当該Milestoneの他ISSUEすべて（個別列挙しない）
+- 当該Milestoneの `FINALIZATION-###` 以外の全ISSUE（`FIX-###` を含む。個別列挙しない）
 
 ## Acceptance Criteria（Milestone Finalization条件）
-- [ ] 当該Milestoneの他ISSUEがすべて完了している
+- [ ] 本Issueを完了にする直前の最新状態で、`backlog/issues/M{N}/` の `FINALIZATION-###` 以外の全ISSUE（`FIX-###` を含む）が完了している
+- [ ] 当該MilestoneのIssueが `backlog/INDEX.md` に列挙され、`FINALIZATION-###` 以外がすべて完了状態（`[x]`）になっている
 - [ ] `docs/07_SECURITY.md` の該当要件が満たされている
 - [ ] `docs/06_TESTING.md` のCI DoDが満たされている
 - [ ] `docs/08_RUNBOOK.md` に必要な運用手順が反映されている
