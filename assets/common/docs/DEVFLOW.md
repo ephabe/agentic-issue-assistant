@@ -11,9 +11,10 @@
 - Issue駆動で実装・検証・マージを繰り返し、確実に前進する
 
 ## 初期配置後の最初のアクション
-- `backlog/issues/M0/` の初期Issue（`CHORE-001`〜`CHORE-003`）を消化し、`docs/`、`AGENTS.md`、CI の基盤を整える
-- M0では Milestone Finalization Issue（`FINALIZATION-###`）を起票しない
-- M0（Repo bootstrap）が完了するまで、M1以降のIssueは起票/着手しない
+- M0 は `M0-Integration`（新規構築向け）または `M0-Analysis`（既存コード解析向け）のどちらかを選んで開始する
+- 選択した M0 の初期Issue（`CHORE-001`〜`CHORE-003`）を消化し、`docs/`、`AGENTS.md`、CI の基盤を整える
+- M0-Integration / M0-Analysis では Milestone Finalization Issue（`FINALIZATION-###`）を起票しない
+- 選択した M0 が完了するまで、M1以降のIssueは起票/着手しない
 
 ## フロー（M1以降）
 1. 対象確定: 未完了の次Milestone（M1以降）を1つだけ対象にする（複数Milestoneを同時に起票しない）

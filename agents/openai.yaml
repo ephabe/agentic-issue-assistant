@@ -1,4 +1,4 @@
 interface:
-  display_name: "Agentic Flow Installer"
-  short_description: "Agentic docs skeleton into a repo"
+  display_name: "Agentic Issue Assistant"
+  short_description: "Issue-driven workflow assistant"
   brand_color: "#3B82F6"

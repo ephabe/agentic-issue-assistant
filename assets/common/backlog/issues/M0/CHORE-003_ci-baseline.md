@@ -34,3 +34,4 @@ CI に最小限の品質ゲート（lint/typecheck/unit）を導入し、以後�
 
 ## Notes
 - 外部 API への直接アクセスは禁止（fixtures/mock を使用）
+- このIssueは M0-Integration の初期Issueとして運用する

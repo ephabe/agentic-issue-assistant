@@ -19,14 +19,14 @@
 
 ## NFR影響の扱い
 - M1以降のIssueは `NFR影響` を補足情報として自然言語で記載する。
-- M0（Repo bootstrap）のIssue（docs/AGENTS/CI整備）は `NFR影響` を省略できる。
+- M0（M0-Integration / M0-Analysis）のIssue（docs/AGENTS/CI整備）は `NFR影響` を省略できる。
 - `NFR影響` に追加対応が必要と記載した場合は、内容に応じて追加ISSUEを起票する（`MVP-` に限らない）。
 - 追加ISSUEの処理順が重要な場合は、`前提ISSUE` を指定したうえで起票する。
 - M1以降のMilestone締め時の品質最終判定は、Milestone Finalization Issue（`FINALIZATION-###`）で行う。
 
 ## Milestone Finalization Issue（特殊）
 - M1以降の各Milestoneで、Milestone Finalization Issueを1件運用する。
-- M0では Milestone Finalization Issueを起票しない。
+- M0-Integration / M0-Analysis では Milestone Finalization Issueを起票しない。
 - `ISSUE-ID` は `FINALIZATION-###` を使う。
 - このIssueは Milestone を終了するときに取りかかる。
 - 通常Issue消化中および Milestone Finalization Issue 実施中は、応急対応として `FIX-###` を追加起票できる。

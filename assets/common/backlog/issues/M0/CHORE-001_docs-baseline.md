@@ -9,7 +9,7 @@
 - docs/07_SECURITY.md
 
 ## Goal
-M0 の前提として docs/ の初版契約（章立て + 初版内容）を整え、以後の Issue 起票と実装判断の基準を確定する。
+M0-Integration の前提として docs/ の初版契約（章立て + 初版内容）を整え、以後の Issue 起票と実装判断の基準を確定する。
 
 ## Scope
 - `docs/` の章立て整備に加えて、各ドキュメントに初版内容を記載する（`00_PRD.md`〜`10_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`ISSUE.md`、`README.md`）。
@@ -42,4 +42,4 @@ M0 の前提として docs/ の初版契約（章立て + 初版内容）を整�
 - 章立てだけで完了にせず、Issue起票と実装判断に使える初版内容まで記載する
 - 章が大きくなる場合はディレクトリ化して細分化し、分割時は `docs/README.md` に追記する
 - Docsは Implementation Plan / Issue 起票の出典として参照できる状態を維持する
-- このIssueは M0（Repo bootstrap）で先行して完了させる
+- このIssueは M0-Integration で先行して完了させる

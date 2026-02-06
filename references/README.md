@@ -1,19 +1,22 @@
-# Agentic Flow Installer Skill
+# Agentic Issue Assistant Skill
 
 Applies a shared docs/templates skeleton plus an `AGENTS.md` template.
 
 ## Manual usage
 ```bash
-bash ~/.codex/skills/agentic-flow-installer/scripts/apply.sh .
+bash ~/.codex/skills/agentic-issue-assistant/scripts/apply.sh . integration
+# or
+bash ~/.codex/skills/agentic-issue-assistant/scripts/apply.sh . analysis
 ```
-Defaults: `repo=.` (`scripts/apply.sh` internally calls `scripts/apply.py`).
+Defaults: `repo=.` / `m0=integration` (`scripts/apply.sh` internally calls `scripts/apply.py`).
 
 Behavior:
 - 配置対象と同名のファイルが1つでも既に存在する場合、インストールは中止される（何も書き込まない）。
 
 ## What gets installed
 - `docs/` 一式（`00_PRD.md`〜`10_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`ISSUE.md`、`README.md`）
-- `backlog/` スケルトン（`INDEX.md`、`ISSUE-template.md`、`FINALIZATION-template.md`、`issues/`、`issues/M0/CHORE-001..003`）
+- `backlog/` スケルトン（`INDEX.md`、`ISSUE-template.md`、`FINALIZATION-template.md`、`issues/`）
+- `backlog/issues/M0/CHORE-001..003`（`--m0` で選択: `integration` = `M0-Integration` / `analysis` = `M0-Analysis`）
 - `AGENTS.md`（CIコマンドは環境に応じて編集）
 
 ## Backlog update (agentic)

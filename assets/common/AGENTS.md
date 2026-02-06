@@ -30,7 +30,7 @@
 ## Issue指定時の挙動
 - 指定されたISSUE-IDの `backlog/issues/` を確認し、本文と参照Docsを読む
 - Issueの `前提ISSUE` があれば、すべて完了していることを確認する（未完了なら前提Issueを先に提案）
-- `FINALIZATION-###`（Milestone Finalization Issue）は M1以降でのみ扱う（M0は対象外）
+- `FINALIZATION-###`（Milestone Finalization Issue）は M1以降でのみ扱う（M0-Integration / M0-Analysis は対象外）
 - `FINALIZATION-###`（Milestone Finalization Issue）の判定対象は、当該Milestoneの `FINALIZATION-###` 以外の全Issue（`FIX-###` を含む）とする
 - 判定時点は Finalization を完了にする直前の最新状態とし、着手後に追加されたIssueも対象に含める
 - 判定対象Issueが `backlog/INDEX.md` に列挙され、`FINALIZATION-###` 以外がすべて完了状態（`[x]`）であることを確認する
