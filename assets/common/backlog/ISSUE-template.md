@@ -6,7 +6,7 @@
 - Milestone Finalization Issueは `backlog/FINALIZATION-template.md` を使用
 
 ## Docs
-（深い関連があるDocのみをLink）
+- `Goal` / `Scope` / `Acceptance Criteria` の判定に直接使うDocに加えて、設計判断や依存関係の理解に必要な関連Docも記載する
 
 ## Goal
 （何を実現するか。1文）
@@ -39,7 +39,7 @@
 - [ ] Acceptance Criteria をすべて満たす
 - [ ] Testsを全 Pass（CI 含む）
 - [ ] 前提ISSUEがある場合は、対象がすべて完了している
-- [ ] `NFR影響` に追加対応が必要と記載した場合は、追加ISSUEを起票・完了済み
+- [ ] `NFR影響` に追加対応が必要と記載した場合は、追加ISSUEを起票済みで、順序が必要なものは `前提ISSUE` で依存関係を定義している
 - [ ] 影響範囲の Docs, backlog/INDEX を更新する
 
 ## Manual QA

@@ -16,7 +16,7 @@ AGENTS.md に DoD とエージェント運用ルールを明記し、実装・�
 - 非対象: 本体機能の実装、CIワークフロー自体の実装、外部サービス疎通の実施。
 
 ## 前提ISSUE（任意）
-- none
+- CHORE-001
 
 ## Acceptance Criteria
 - [ ] リポジトリ直下に AGENTS.md が存在する

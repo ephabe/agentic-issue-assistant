@@ -35,7 +35,6 @@
 ## DoD（完了判定）
 - [ ] Acceptance Criteria をすべて満たす
 - [ ] 影響範囲の Docs, backlog/INDEX を更新する
-- [ ] 本Issue完了後、同Milestoneへの新規Issue起票が行われていない（原則）
 
 ## Manual QA
 1) セキュリティ/品質ゲートの確認結果を記録

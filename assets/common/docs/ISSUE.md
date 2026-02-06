@@ -9,9 +9,9 @@
 - Issueファイルは `backlog/issues/M{N}/<ID>_<slug>.md` 形式で作成する。
 - 一覧は `backlog/INDEX.md` に記載する。
 - 通常Issueのテンプレートは `backlog/ISSUE-template.md` を使う。
-- Milestone Finalization Issueのテンプレートは `backlog/FINALIZATION-template.md` を使う。
+- Milestone Finalization Issue（M1以降）のテンプレートは `backlog/FINALIZATION-template.md` を使う。
 - すべてのIssueは `ISSUE-ID: <ID>` を含む。
-- Issue本文は関連の深いDocsのみを引用・参照する。
+- Issue本文の `Docs` には、`Goal` / `Scope` / `Acceptance Criteria` の判定に直接使うDocsに加えて、設計判断や依存関係の理解に必要な関連Docsも記載する。
 
 ## 依存関係と順序
 - 通常Issueで前提がある場合は `前提ISSUE` セクションに `ISSUE-ID` を列挙する（複数可）。
@@ -22,16 +22,18 @@
 - M0（Repo bootstrap）のIssue（docs/AGENTS/CI整備）は `NFR影響` を省略できる。
 - `NFR影響` に追加対応が必要と記載した場合は、内容に応じて追加ISSUEを起票する（`MVP-` に限らない）。
 - 追加ISSUEの処理順が重要な場合は、`前提ISSUE` を指定したうえで起票する。
-- Milestone締め時の品質最終判定は、Milestone Finalization Issue（`FINALIZATION-###`）で行う。
+- M1以降のMilestone締め時の品質最終判定は、Milestone Finalization Issue（`FINALIZATION-###`）で行う。
 
 ## Milestone Finalization Issue（特殊）
 - M1以降の各Milestoneで、Milestone Finalization Issueを1件運用する。
+- M0では Milestone Finalization Issueを起票しない。
 - `ISSUE-ID` は `FINALIZATION-###` を使う。
 - このIssueは Milestone を終了するときに取りかかる。
 - 通常Issue消化中および Milestone Finalization Issue 実施中は、応急対応として `FIX-###` を追加起票できる。
 - 前提ISSUEは「当該Milestoneの他Issueすべて」を固定とし、個別列挙しない。
 - このIssueの完了をもって、当該Milestoneの完了とセキュリティ/品質担保とする。
 - このIssueの完了後は、同Milestoneへの新規Issue起票を原則禁止とする。
+- 例外で同Milestoneに新規Issueを起票する場合は、理由を `docs/09_DECISIONS.md` に記録する。
 
 ## 完了判定
 - 完了判定は各Issueの `Acceptance Criteria` と `DoD` を正とする。

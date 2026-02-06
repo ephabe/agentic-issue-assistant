@@ -12,7 +12,7 @@
 - 契約（docs/、AGENTS、テンプレ）を揃えて以後の実装を流せる状態にする
 
 ## Exit criteria（Milestones完了条件）
-- [ ] docs/ の骨格が揃っている（00_PRD〜10_IMPLEMENTATION_PLAN、DEVFLOW、ISSUE、README）
+- [ ] docs/ の初版契約が定義されている（00_PRD〜10_IMPLEMENTATION_PLAN、DEVFLOW、ISSUE、README）
 - [ ] AGENTS.md がある（DoD定義）
 - [ ] CIが最低限回る開発環境構築
 - [ ] `docs/07_SECURITY.md` に初版のセキュリティ要件が定義されている
@@ -23,12 +23,12 @@
 - テンプレ/運用ルールの未整備で backlog が形骸化する
 
 ### Notes
-- docs/ の骨格（00_PRD〜10_IMPLEMENTATION_PLAN、DEVFLOW、ISSUE、README）とバックログ運用（ISSUE-template 等）を揃える。
+- docs/ の初版契約（00_PRD〜10_IMPLEMENTATION_PLAN、DEVFLOW、ISSUE、README）とバックログ運用（ISSUE-template 等）を揃える。
 - CIは lint / typecheck / unit が必ず走る最低限構成を前提にする。
 
 ---
 
-# M{N}: {短いタイトル} ({任意: フェーズ/領域})
+# M{N>=1}: {短いタイトル} ({任意: フェーズ/領域})
 ## Purpose
 - {このマイルストーンで達成する成果物/ユーザー価値}
 - {成果物/価値が複数ある場合は追加}
@@ -42,6 +42,7 @@
 - none
 
 ### Notes
+- このテンプレートブロックは M1以降のMilestoneで利用する。
 - {前提条件 / 依存タスク / 外部調整}
 - Milestone Finalization Issue（`FINALIZATION-###`）は当該Milestoneの他Issueすべてを前提とし、Milestone終了時に取りかかる。
 
