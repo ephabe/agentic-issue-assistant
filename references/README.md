@@ -4,14 +4,12 @@ Applies a shared docs/templates skeleton plus an `AGENTS.md` template.
 
 ## Manual usage
 ```bash
-bash ~/.codex/skills/agentic-flow-installer/scripts/apply.sh safe .
-bash ~/.codex/skills/agentic-flow-installer/scripts/apply.sh overwrite .
+bash ~/.codex/skills/agentic-flow-installer/scripts/apply.sh .
 ```
-Defaults: `mode=safe`, `repo=.` (`scripts/apply.sh` internally calls `scripts/apply.py`).
+Defaults: `repo=.` (`scripts/apply.sh` internally calls `scripts/apply.py`).
 
-Modes:
-- `safe`: 既存ファイルは上書きしない（同一なら skip (same)、差分があれば skip (exists)）。
-- `overwrite`: 既存ファイルも上書きする。
+Behavior:
+- 配置対象と同名のファイルが1つでも既に存在する場合、インストールは中止される（何も書き込まない）。
 
 ## What gets installed
 - `docs/` 一式（`00_PRD.md`〜`10_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`README.md`）

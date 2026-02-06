@@ -9,9 +9,10 @@
 ## Global rules
 - Issueファイルは `backlog/issues/M{N}/<ID>_<slug>.md`
 - すべてのIssueは `ISSUE-ID: <ID>` を含む
-- Issue本文は docs を参照する（最大3リンクまで）
-- 各Milestoneで統合ハードニングIssueを1件作成し、NFR影響ありの項目を集約する
+- Issue本文は関連が深い docs のみ参照する
+- M1以降の各Milestoneで統合ハードニングIssueを1件作成し、NFR影響ありの項目を集約する
 - セキュリティ監査の統合ハードニングIssueは `SEC-###` を使用する
+- M0（Repo bootstrap）のIssue（docs/AGENTS/CI整備）では `NFR影響` と統合ハードニングIssueを必須化しない
 
 ## DoD tiers
 - CI DoD: lint / typecheck / unit（CIで強制）
@@ -21,7 +22,7 @@
 - Security gate: `docs/07_SECURITY.md` の該当要件を満たす
 - Observability gate: 主要シナリオの観測項目/閾値を定義し、`docs/08_RUNBOOK.md` に反映する
 - Operability gate: デプロイ/ロールバック/Secrets変更手順を `docs/08_RUNBOOK.md` に反映する
-- `NFR影響` が `none` 以外のIssueは、同Milestoneの統合ハードニングIssueで完了判定する
+- M1以降で `NFR影響` が `none` 以外のIssueは、同Milestoneの統合ハードニングIssueで完了判定する
 
 ---
 

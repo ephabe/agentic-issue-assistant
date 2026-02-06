@@ -9,6 +9,11 @@
 ## Goal
 CI に最小限の品質ゲート（lint/typecheck/unit）を導入し、以後の Milestone で品質基準を担保できる状態にする。
 
+## Scope
+- CIで `lint / typecheck / unit` を実行し、失敗時にジョブを失敗させる最小構成を整備する。
+- 実行コマンドと運用前提を `AGENTS.md` / CI設定に反映し、`docs/06_TESTING.md` と整合させる。
+- 非対象: E2E導入、結合テスト基盤の構築、実外部APIへの接続を伴うテスト。
+
 ## Acceptance Criteria
 - [ ] lint / typecheck / unit が CI で実行され、失敗時に落ちる
 - [ ] lint / typecheck / unit が CI で全て Pass する

@@ -7,12 +7,12 @@ description: Install common docs/backlog skeleton plus an AGENTS template into a
 When the user wants to install the agentic workflow templates into a directory.
 
 ## Defaults
-- mode: safe
+- repo: `.`
 
 ## Actions
 ### install (default)
 Run:
-- `python3 <skill_dir>/scripts/apply.py --mode safe --repo <repo_root>`
+- `python3 <skill_dir>/scripts/apply.py --repo <repo_root>`
 
 Then remind (install後のみ):
-- (no additional reminders)
+- `backlog/issues/M0/` の初期Issue（`CHORE-001`〜`CHORE-003`）に従って、`docs/`、`AGENTS.md`、CI の整備を進める。

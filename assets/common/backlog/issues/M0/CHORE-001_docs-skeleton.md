@@ -8,6 +8,11 @@
 ## Goal
 M0 の前提として docs/ の骨格を揃え、以後の Issue 起票と実装が迷わず進められる状態にする。
 
+## Scope
+- `docs/` の骨格整備のみを対象とする（`00_PRD.md`〜`10_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`README.md`）。
+- `docs/README.md` の目次と運用ルールを、実ファイル構成と整合させる。
+- 非対象: アプリ実装、CI設定変更、テストコード追加、依存更新。
+
 ## Acceptance Criteria
 - [ ] docs/ に 00_PRD〜10_IMPLEMENTATION_PLAN と DEVFLOW.md, README.md が存在する
 - [ ] docs/README.md に全ドキュメントが列挙されている（分割時は追記）

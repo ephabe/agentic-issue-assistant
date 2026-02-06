@@ -2,7 +2,7 @@
 - ISSUE-ID: 
 
 ## Docs
-（深い関連があるDocへのLink、最大3リンク）
+（深い関連があるDocのみをLink）
 
 ## Goal
 （何を実現するか。1文）
@@ -10,9 +10,10 @@
 ## Scope
 （この機能を成立させるために必ず必要な変更）
 
-## NFR影響
+## NFR影響（M1以降は必須）
 - `none` | `security` | `observability` | `operability` | `multiple`
-- `none` 以外の場合: 同Milestoneの統合ハードニングIssueを記載
+- M0（Repo bootstrap: docs/AGENTS/CI整備）のIssueでは省略可
+- `none` 以外の場合: 同Milestoneの統合ハードニングIssueを記載（M1以降）
 - `NFR影響 = security` の監査/ハードニングIssueは `SEC-###` を使用
 - Hardening Issue: `<ISSUE-ID>`
 
@@ -27,7 +28,7 @@
 ## DoD（完了判定）
 - [ ] Acceptance Criteria をすべて満たす
 - [ ] Testsを全 Pass（CI 含む）
-- [ ] `NFR影響` が `none` 以外なら統合ハードニングIssueへ反映済み
+- [ ] `NFR影響` を記載したIssueで、`none` 以外なら統合ハードニングIssueへ反映済み
 - [ ] 影響範囲の Docs, backlog/INDEX を更新する
 
 ## Manual QA

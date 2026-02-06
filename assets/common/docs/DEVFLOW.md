@@ -14,7 +14,7 @@
 1. Docsを作り込む
 2. `10_IMPLEMENTATION_PLAN.md` でMilestoneを定義する
 3. Milestoneの内容から `backlog/issues/` に Issue を起票する
-4. Milestoneごとに「統合ハードニングIssue」を1件起票する
+4. M1以降のMilestoneごとに「統合ハードニングIssue」を1件起票する
 5. Issueを消化する（ブランチ → 実装 → テスト → コミット → マージ）
 6. Issueがなくなるまで 3-5 を繰り返す
 7. Milestoneの Exit criteria と品質ゲートを評価し、すべて完了したら次のMilestoneへ
@@ -37,15 +37,16 @@
 - テンプレートは `backlog/ISSUE-template.md` を使う
 - 形式は `backlog/issues/M{N}/<ID>_<slug>.md`
 - すべてのIssueは `ISSUE-ID: <ID>` を含む
-- Issue本文は関連の深いDocsを引用・参照する（最大3リンクまで）
-- すべてのIssueに `NFR影響` を記載する（`none` / `security` / `observability` / `operability` / `multiple`）
+- Issue本文は関連の深いDocsのみを引用・参照する
+- M1以降のIssueは `NFR影響` を記載する（`none` / `security` / `observability` / `operability` / `multiple`）
+- M0（Repo bootstrap）のIssue（docs/AGENTS/CI整備）は `NFR影響` を省略できる
 - `NFR影響` が `none` 以外なら、同Milestoneの統合ハードニングIssueへ集約する
 
 ## 統合ハードニングIssue（Milestone単位）
-- 各Milestoneで1件作成し、NFR影響ありの対応を集約する
+- M1以降の各Milestoneで1件作成し、NFR影響ありの対応を集約する
 - 代表例: セキュリティ要件の反映、監視/アラート整備、Runbook更新
 - セキュリティ監査Issueは `SEC-###` プレフィックスを使用する
-- Milestone完了条件として、このIssueの完了を必須にする
+- M0（Repo bootstrap）は対象外とし、M1以降はMilestone完了条件としてこのIssueの完了を必須にする
 
 ## Issue消化（実装サイクル）
 1. Issueに対応するブランチを切る
