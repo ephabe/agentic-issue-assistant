@@ -27,6 +27,14 @@
 - `docs/10_IMPLEMENTATION_PLAN.md` → `backlog/issues/`（1 Issue = 1ファイル）→ 実装/検証
 - Issue発行/消化はMilestone単位で回す（Exit criteria 完了で次へ）
 
+## Wrap指示（ショートカット）
+- `ISSUEの起票`: 対象Milestoneを特定し、Milestone内容から通常Issueを推測して起票する
+- `ISSUEのインスタント起票`: Milestone推測を使わず、その場の指示に従って通常Issueを起票する
+- `ISSUEの着手と実装`: 指定ISSUE-IDを起点に、Issue内容に従って実装を進める
+- `FINALIZATIONの起票`: `FINALIZATION-###` を作成し、Milestone最終判定Issueを準備する
+- `FINALIZATIONの実行`: `FINALIZATION-###` を実行し、Milestone完了判定を行う
+- 上記ショートカットは、以下「Issue指定時の挙動」と `docs/ISSUE.md` / `docs/DEVFLOW.md` を必ず遵守して処理する
+
 ## Issue指定時の挙動
 - 指定されたISSUE-IDの `backlog/issues/` を確認し、本文と参照Docsを読む
 - Issueの `前提ISSUE` があれば、すべて完了していることを確認する（未完了なら前提Issueを先に提案）

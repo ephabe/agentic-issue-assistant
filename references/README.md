@@ -23,5 +23,16 @@ Behavior:
 - docs と実装計画（`docs/10_IMPLEMENTATION_PLAN.md`）を読み、`backlog/issues/` に Issue ファイルを追加する作業はエージェントが指示を受けて実施する。
 - 既存Issueは変更せず追記のみ。ID重複はスキップする。
 
+## Wrap usage (agent instructions replacement)
+- `ISSUEの起票`: Milestone（`docs/10_IMPLEMENTATION_PLAN.md`）から内容を推測し、通常Issueを `backlog/issues/M{N}/` に作成して `backlog/INDEX.md` を更新する。
+- `ISSUEのインスタント起票`: Milestone推測を行わず、その場の指示を優先して通常Issueを起票する。
+- `ISSUEの着手と実装`: 指定ISSUE-IDの `Scope` に沿って実装し、`実装 -> テスト -> 修復` を全Passまで反復する。
+- `FINALIZATIONの起票`: `backlog/FINALIZATION-template.md` から `FINALIZATION-###` を作成し、`docs/ISSUE.md` / `docs/DEVFLOW.md` を満たす。
+- `FINALIZATIONの実行`: 当該Milestoneの `FINALIZATION-###` 以外の全Issue完了を確認し、`docs/06_TESTING.md` / `docs/07_SECURITY.md` / `docs/08_RUNBOOK.md` 準拠で最終判定する。
+
+Notes:
+- M0（`M0-Integration` / `M0-Analysis`）では `FINALIZATION-###` を起票しない。
+- Finalization完了後は同Milestoneへの新規Issue起票を原則禁止し、例外は `docs/09_DECISIONS.md` に理由を記録する。
+
 ## ISSUE-ID
 - 各 Issue ファイルに `ISSUE-ID: <id>` を必ず付ける（重複発行防止）。
