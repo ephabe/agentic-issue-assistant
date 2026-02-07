@@ -13,19 +13,31 @@
 - すべてのIssueは `ISSUE-ID: <ID>` を含む。
 - Issue本文の `Docs` には、`Goal` / `Scope` / `Acceptance Criteria` の判定に直接使うDocsに加えて、設計判断や依存関係の理解に必要な関連Docsも記載する。
 
+## 通常Issue起票の起点（3種類）
+- Milestone根拠: `docs/10_IMPLEMENTATION_PLAN.md` の進行中Milestone記述を根拠に分解して起票する。
+- TODO根拠: `backlog/TODO.md` で「今やる」と決めた項目をIssue化して起票する。
+- インスタント: その場の指示を直接Issue化して起票する。
+
+## Issue所属Milestoneルール
+- 通常Issueは、起票時点で進行中のMilestoneに必ず所属させる。
+- 進行中Milestoneは `backlog/INDEX.md` の未完了（`[ ]`）Issueを持つ最小の `M{N}` とする。
+- 未完了Issueが1件もない場合は、`docs/10_IMPLEMENTATION_PLAN.md` の定義順で次に着手するMilestoneを進行中とする。
+- ユーザー指定が別Milestoneでも、起票先は進行中Milestoneに補正する。
+
 ## TODO と Issue の切り分け
 - TODO（未着手候補・保留タスク）は `backlog/TODO.md` に記録する。
 - TODO は一次置き場として流動運用し、追加・統合・分割・撤回を許容する。
 - TODO は「今やる」と決まるまで Issue 化しない。
 - 実装着手すると決めた時点で Issue 化し、`backlog/INDEX.md` と `backlog/issues/` に反映する。
+- Issue 化した項目は `backlog/TODO.md` の `未起票` から `ISSUE起票済み` へ移動する（削除しない）。
 
 ## 依存関係と順序
 - 通常Issueで前提がある場合は `前提ISSUE` セクションに `ISSUE-ID` を列挙する（複数可）。
 - 着手前に `前提ISSUE` の完了を確認し、未完了なら先に前提Issueを消化する。
 
 ## NFR影響の扱い
-- M1以降のIssueは `NFR影響` を補足情報として自然言語で記載する。
-- M0（M0-Integration / M0-Analysis）のIssue（docs/AGENTS/CI整備）は `NFR影響` を省略できる。
+- `NFR影響` は任意項目とし、必要な場合のみ補足情報として自然言語で記載する。
+- `NFR影響` が不要な場合は省略できる。
 - `NFR影響` に追加対応が必要と記載した場合は、内容に応じて追加ISSUEを起票する（`MVP-` に限らない）。
 - 追加ISSUEの処理順が重要な場合は、`前提ISSUE` を指定したうえで起票する。
 - M1以降のMilestone締め時の品質最終判定は、Milestone Finalization Issue（`FINALIZATION-###`）で行う。
