@@ -1,12 +1,17 @@
 # Architecture
 
+## GUIDE（作業用 / 最終稿では削除）
+- この文書は作業中ガイドです。最終稿では削除します。
+- 現在の本文は仮置きです。要件に合わせて変更・削除してください。
+- 不要なレイヤーは削除せず `適用なし（N/A）` とし、`適用しない理由` と `再適用条件` を記載してください。
+- 共通ルールは `docs/README.md` の「共通ガイド」を参照してください。
+
 ## Defines
 - Architecture boundary and dependency contract.
 - 機能仕様ではなく「どこに置くか・どう依存するか」を定義する。
-- モジュール配置と責務境界（domain/infra）
+- モジュールの配置と責務境界
 - 依存方向の制約と外部接続の集約方針
-- Clean Architecture/DDD の採用方針と例外運用
-- 再利用資産（component/type/helper/library）の共通化判断基準
+- 再利用資産の共通化判断基準
 
 ## Boundaries
 - domain/: （純粋ロジック、正規化、制約）
