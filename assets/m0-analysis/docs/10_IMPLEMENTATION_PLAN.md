@@ -17,29 +17,31 @@
 
 ---
 
-# M0-Integration: Repo integration
+# M0-Analysis: Existing code analysis
 ## Purpose
-- 契約（docs/、AGENTS、テンプレ）を揃えて以後の実装を流せる状態にする
+- 既存ソースコードの実装事実を解析し、契約（docs/、AGENTS、テンプレ）へ反映して以後の改善を流せる状態にする
 
 ## Deliverables
-- docs/ 初版契約一式（`00_PRD.md`〜`10_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`ISSUE.md`、`README.md`）
-- `AGENTS.md`（DoD・実行ルール定義）
-- CI 基盤（最低限 `lint` / `typecheck` / `unit` が回る状態）
-- AGENTICな開発環境一式（backlog テンプレート、Issue運用導線、実装ループ運用が可能な状態）
+- 既存実装の根拠に基づく docs/ 初版契約一式（`00_PRD.md`〜`10_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`ISSUE.md`、`README.md`）
+- `AGENTS.md`（現状DoD・運用ルール反映）
+- 既存CI/品質ゲートの現状整理と不足補完方針
+- AGENTICな開発環境一式（既存実装に合わせた backlog 運用と Issue 実行導線）
 
 ## Exit criteria（Milestones完了条件）
-- [ ] docs/ の初版契約が定義されている（00_PRD〜10_IMPLEMENTATION_PLAN、DEVFLOW、ISSUE、README）
+- [ ] docs/ が既存実装の根拠に基づいて定義されている（00_PRD〜10_IMPLEMENTATION_PLAN、DEVFLOW、ISSUE、README）
 - [ ] AGENTS.md がある（DoD定義）
 - [ ] CIがエラーなく回る
 
 ## Risks
-- Docs/DoD の合意が曖昧で以後のIssueがブレる
-- M0-Integration でCIの最低限構成が整わない場合、実装フェーズの品質要件をIssueとして運用できない
-- テンプレ/運用ルールの未整備で backlog が形骸化する
+- 既存実装の読み違いで docs が実態と乖離する
+- CIや運用ルールの現状把握が不足すると、M1以降のIssueが不正確になる
 
 ### Notes
-- docs/ の初版契約（00_PRD〜10_IMPLEMENTATION_PLAN、DEVFLOW、ISSUE、README）とバックログ運用（ISSUE-template 等）を揃える。
-- CIは lint / typecheck / unit が必ず走る最低限構成を前提にする。
+- 既存コード解析の結果は、判断根拠を docs に残して追跡可能にする。
+- 既知ギャップや未確定事項（TODO）は `backlog/TODO.md` に記録する。
+- TODO は一次置き場として流動運用し、優先度と内容は随時更新する。
+- 実装着手すると決めた TODO のみ Issue 化し、`backlog/INDEX.md` と `backlog/issues/` に反映する。
+- 方針の選択や例外許容などの意思決定事項のみ `docs/09_DECISIONS.md` に記録する。
 
 ---
 

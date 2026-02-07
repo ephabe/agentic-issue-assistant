@@ -6,6 +6,25 @@ import pathlib
 import shutil
 import sys
 
+
+MODE_REPO_INTEGRATION = "repo-integration"
+MODE_EXISTING_CODE_ANALYSIS = "existing-code-analysis"
+
+MODE_LABELS = {
+    MODE_REPO_INTEGRATION: "Repo integration",
+    MODE_EXISTING_CODE_ANALYSIS: "Existing code analysis",
+}
+
+MODE_ALIASES = {
+    "repo-integration": MODE_REPO_INTEGRATION,
+    "repo integration": MODE_REPO_INTEGRATION,
+    "integration": MODE_REPO_INTEGRATION,
+    "existing-code-analysis": MODE_EXISTING_CODE_ANALYSIS,
+    "existing code analysis": MODE_EXISTING_CODE_ANALYSIS,
+    "analysis": MODE_EXISTING_CODE_ANALYSIS,
+}
+
+
 class JaArgumentParser(argparse.ArgumentParser):
     def format_usage(self) -> str:
         return super().format_usage().replace("usage: ", "使い方: ")
@@ -49,6 +68,15 @@ def copy_files(file_map: dict[pathlib.Path, pathlib.Path], dst: pathlib.Path) ->
         logs.append(f"書き込み: {rel}")
     return logs
 
+
+def normalize_m0_mode(value: str) -> str | None:
+    normalized = value.strip().lower().replace("_", " ").replace("-", " ")
+    normalized = " ".join(normalized.split())
+    if normalized in MODE_ALIASES:
+        return MODE_ALIASES[normalized]
+    normalized = normalized.replace(" ", "-")
+    return MODE_ALIASES.get(normalized)
+
 def main() -> int:
     p = JaArgumentParser(
         description="agentic-flow テンプレートを対象リポジトリへ適用します。",
@@ -58,11 +86,22 @@ def main() -> int:
     p.add_argument("--repo", default=".", help="対象リポジトリのルートパス")
     p.add_argument(
         "--m0",
-        default="integration",
-        choices=["integration", "analysis"],
-        help="M0テンプレート種別（integration または analysis）",
+        default=MODE_REPO_INTEGRATION,
+        help=(
+            "M0テンプレート種別 "
+            "（Repo integration / Existing code analysis。"
+            "互換エイリアス: integration / analysis）"
+        ),
     )
     args = p.parse_args()
+    m0_mode = normalize_m0_mode(args.m0)
+    if m0_mode is None:
+        print(
+            "エラー: --m0 は `repo-integration` / `existing-code-analysis` "
+            "（または互換エイリアス `integration` / `analysis`）を指定してください。",
+            file=sys.stderr,
+        )
+        return 2
 
     skill_dir = pathlib.Path(__file__).resolve().parent.parent
     common = skill_dir / "assets" / "common"
@@ -71,7 +110,7 @@ def main() -> int:
     if not common.exists():
         print(f"エラー: 共通アセットが見つかりません: {common}", file=sys.stderr)
         return 2
-    if args.m0 == "analysis" and not analysis_overlay.exists():
+    if m0_mode == MODE_EXISTING_CODE_ANALYSIS and not analysis_overlay.exists():
         print(f"エラー: Analysis用アセットが見つかりません: {analysis_overlay}", file=sys.stderr)
         return 2
 
@@ -81,7 +120,7 @@ def main() -> int:
         return 2
 
     sources = [common]
-    if args.m0 == "analysis":
+    if m0_mode == MODE_EXISTING_CODE_ANALYSIS:
         sources.append(analysis_overlay)
     file_map = build_file_map(sources)
 
@@ -106,7 +145,7 @@ def main() -> int:
     logs = copy_files(file_map, repo)
 
     print(f"適用先: {repo}")
-    print(f"M0テンプレート: {args.m0}")
+    print(f"M0テンプレート: {MODE_LABELS[m0_mode]} ({m0_mode})")
     for line in logs[:2000]:
         print(line)
     if len(logs) > 2000:

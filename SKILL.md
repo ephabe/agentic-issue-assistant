@@ -12,7 +12,7 @@ description: Install common docs/backlog skeleton plus an AGENTS template, and w
 
 ## Defaults
 - repo: `.`
-- m0: `integration`
+- m0: `repo-integration`（互換エイリアス: `integration`）
 
 ## Preconditions
 - `docs/`, `backlog/`, `AGENTS.md` が未配置なら先に `install` を実行する。
@@ -29,7 +29,7 @@ description: Install common docs/backlog skeleton plus an AGENTS template, and w
 ## Actions
 ### install (default)
 Run:
-- `python3 <skill_dir>/scripts/apply.py --repo <repo_root> --m0 <integration|analysis>`
+- `python3 <skill_dir>/scripts/apply.py --repo <repo_root> --m0 <repo-integration|existing-code-analysis>`
 
 Then remind (install後のみ):
 - 選択した M0 テンプレート（`M0-Integration` / `M0-Analysis`）の初期Issue（`CHORE-001`〜`CHORE-003`）に従って、`docs/`、`AGENTS.md`、CI の整備を進める。
