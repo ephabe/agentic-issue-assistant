@@ -18,18 +18,22 @@
 ## Summary
 - （このプロジェクトが何を提供するか。1〜2行）
 
+## MVP (must)
+- `<feature>`: （提供価値）
+- `<feature>`: （提供価値）
+- `<feature>`: （提供価値）
+
 ## Goal
 - （達成したい事業目標）
 
 ## Non-goals
 - （実装しない内容）
 
-## MVP (must)
-- `<feature>`: （提供価値）
-- `<feature>`: （提供価値）
-- `<feature>`: （提供価値）
+## Assumptions / Constraints
+- Assumptions: （成立を仮定している条件）
+- Constraints: （期限/予算/依存/法令/規約）
 
 ## Open questions（必要に応じて）
 ### `<question>`
 - Why unresolved: （未確定の理由）
-- Due limit: （決定期限）
+- Due date: （決定期限）
