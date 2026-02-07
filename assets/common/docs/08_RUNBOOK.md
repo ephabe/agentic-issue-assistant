@@ -8,17 +8,30 @@
 
 ## Defines
 - Release and incident operations.
-- デプロイ時チェック項目（Secrets/Webhook/監視）
-- 障害時の一次切り分けと復旧手順
+- リリース前後の運用手順を定義する。
+- 障害時の初動・復旧・記録手順を定義する。
 
-## Manual smoke (before release)
-- （手動確認手順）
+## Runbook items
+### `<item-name>`
+- When to run: （どういうときに実行するか）
+- Purpose: （なんのために実行するか）
+- Steps:
+  1. （手順1）
+  2. （手順2）
+  3. （手順3）
 
-## Deployment checklist
-- Secrets / env vars
-- Webhook (if any)
-- Monitoring (if any)
+### `Release smoke test`
+- When to run: （リリース前、または本番反映直後）
+- Purpose: （主要機能が利用可能かを短時間で確認する）
+- Steps:
+  1. （主要導線を1回ずつ操作する）
+  2. （期待結果と差分がないことを確認する）
+  3. （差分があればロールバック/修正判断へ進む）
 
-## Incident triage
-- Logs
-- Rollback
+### `Incident first response`
+- When to run: （障害検知時）
+- Purpose: （影響拡大を防ぎ、復旧判断に必要な情報を揃える）
+- Steps:
+  1. （影響範囲を特定する）
+  2. （暫定対処または停止判断を実行する）
+  3. （関係者へ状況共有し、次アクションを確定する）

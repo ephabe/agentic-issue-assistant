@@ -7,15 +7,17 @@
 - 共通ルールは `docs/README.md` の「共通ガイド」を参照してください。
 
 ## Defines
-- Feature scope by phase.
-- 各機能の実装タイミングの境界
+- Feature scope contract.
+- 実装対象となる機能範囲を定義する。
+- スコープは検証可能な機能単位で定義する。
 
-## MVP
-- [ ] （機能）
-- [ ] （機能）
-
-## Next
-- [ ] （機能）
-
-## Later
-- [ ] （機能）
+## Implementation Scopes
+- `<scope title>`
+  - Scope: （当該スコープで実装する内容）
+  - References（optional）: （関連仕様）
+- `ADMIN-USER-CRUD` 管理画面でユーザーをCRUDできる
+  - Scope: 一覧表示、詳細表示、作成、編集、削除、入力バリデーション
+  - References（optional）: `docs/02_UX.md`, `docs/03_API.md`, `docs/04_DATA.md`
+- `FRONT-FLOWS` 主要導線でユーザー操作が完結できる
+  - Scope: 一覧表示、詳細表示、検索/絞り込み、エラー表示、再試行導線を本番想定データ契約で確認可能
+  - References（optional）: `docs/02_UX.md`, `docs/06_TESTING.md`

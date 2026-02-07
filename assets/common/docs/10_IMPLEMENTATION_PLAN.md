@@ -8,8 +8,12 @@
 
 ## Defines
 - Milestone delivery plan.
-- Milestoneごとの目的、完了条件、リスク、備考
-- Milestone計画をIssue起票の起点として扱う
+- 開発フェーズ単位である Milestone ごとの目的、完了条件、リスク、備考
+- Milestone をIssue起票の起点として扱う
+
+## Out of scope
+- API/DB/実装コードの詳細設計はここに書かない。
+- 未解決メモや調査ノートはここに書かず、`backlog/TODO.md` に記録する。
 
 ---
 
@@ -17,11 +21,16 @@
 ## Purpose
 - 契約（docs/、AGENTS、テンプレ）を揃えて以後の実装を流せる状態にする
 
+## Deliverables
+- docs/ 初版契約一式（`00_PRD.md`〜`10_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`ISSUE.md`、`README.md`）
+- `AGENTS.md`（DoD・実行ルール定義）
+- CI 基盤（最低限 `lint` / `typecheck` / `unit` が回る状態）
+- AGENTICな開発環境一式（backlog テンプレート、Issue運用導線、実装ループ運用が可能な状態）
+
 ## Exit criteria（Milestones完了条件）
 - [ ] docs/ の初版契約が定義されている（00_PRD〜10_IMPLEMENTATION_PLAN、DEVFLOW、ISSUE、README）
 - [ ] AGENTS.md がある（DoD定義）
-- [ ] CIが最低限回る開発環境構築
-- [ ] `docs/07_SECURITY.md` に初版のセキュリティ要件が定義されている
+- [ ] CIがエラーなく回る
 
 ## Risks
 - Docs/DoD の合意が曖昧で以後のIssueがブレる
@@ -38,20 +47,27 @@
 ## Purpose
 - 既存ソースコードの実装事実を解析し、契約（docs/、AGENTS、テンプレ）へ反映して以後の改善を流せる状態にする
 
+## Deliverables
+- 既存実装の根拠に基づく docs/ 初版契約一式（`00_PRD.md`〜`10_IMPLEMENTATION_PLAN.md`、`DEVFLOW.md`、`ISSUE.md`、`README.md`）
+- `AGENTS.md`（現状DoD・運用ルール反映）
+- 既存CI/品質ゲートの現状整理と不足補完方針
+- AGENTICな開発環境一式（既存実装に合わせた backlog 運用と Issue 実行導線）
+
 ## Exit criteria（Milestones完了条件）
-- [ ] docs/ の初版契約が既存実装の根拠に基づいて定義されている（00_PRD〜10_IMPLEMENTATION_PLAN、DEVFLOW、ISSUE、README）
+- [ ] docs/ が既存実装の根拠に基づいて定義されている（00_PRD〜10_IMPLEMENTATION_PLAN、DEVFLOW、ISSUE、README）
 - [ ] AGENTS.md がある（DoD定義）
-- [ ] 既存CIと品質ゲート（lint/typecheck/unit）の現状が定義され、必要な補完方針が明確になっている
-- [ ] `docs/07_SECURITY.md` に現状のセキュリティ要件とギャップが定義されている
+- [ ] CIがエラーなく回る
 
 ## Risks
 - 既存実装の読み違いで docs が実態と乖離する
 - CIや運用ルールの現状把握が不足すると、M1以降のIssueが不正確になる
-- 既知ギャップが未整理のまま進み、後続の品質担保コストが増える
 
 ### Notes
 - 既存コード解析の結果は、判断根拠を docs に残して追跡可能にする。
-- 既知ギャップや未確定事項は `docs/09_DECISIONS.md` と backlog に記録する。
+- 既知ギャップや未確定事項（TODO）は `backlog/TODO.md` に記録する。
+- TODO は一次置き場として流動運用し、優先度と内容は随時更新する。
+- 実装着手すると決めた TODO のみ Issue 化し、`backlog/INDEX.md` と `backlog/issues/` に反映する。
+- 方針の選択や例外許容などの意思決定事項のみ `docs/09_DECISIONS.md` に記録する。
 
 ---
 
@@ -60,13 +76,20 @@
 - {このマイルストーンで達成する成果物/ユーザー価値}
 - {成果物/価値が複数ある場合は追加}
 
+## Deliverables
+- {成果物1}
+- {成果物2}
+
+## Requirements
+- [ ] REQ-01: {要件}
+- [ ] REQ-02: {要件}
+- [ ] REQ-03: {要件}
+
 ## Exit criteria（Milestones完了条件）
+- [ ] `Requirements` の全項目が、当該MilestoneのIssue群で網羅され起票済み
+- [ ] 当該MilestoneのIssueがすべて完了している
 - [ ] 当該Milestoneの Milestone Finalization Issue（`FINALIZATION-###`）が完了している
 - [ ] {完了条件 / 受け入れ条件を追加する場合のみ記載}
-
-## Risks
-- {技術/スケジュール/依存関係の不確実性}
-- none
 
 ### Notes
 - このテンプレートブロックは M1以降のMilestoneで利用する。

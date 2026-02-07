@@ -8,9 +8,19 @@
 
 ## Defines
 - Key decision log.
-- その判断に至った最小限の理由
-- 決定日（追跡可能性）
+- 変更後に確定した意思決定を記録する。
+- 最低限「日付・結論・理由」を残す。
 
-## YYYY-MM-DD <title>
-Decision:
-Reason:
+## Out of scope
+- 未解決課題・保留アイデア・調査メモはここに書かない。
+- 未解決事項は `backlog/TODO.md`（文脈依存の補足は各ドキュメントの `Open questions`）に記録する。
+
+## Record template
+### `YYYY-MM-DD <title>`
+- Decision: （最終的に採用した方針・ルール）
+- Reason: （採用理由と判断根拠）
+- Impacted docs/code（必要な場合）: （影響を受けるドキュメントやコード）
+- Supersedes（必要な場合）: `<old-title>`
+
+## Supersession rule
+- 以前の決定を置き換える場合は、旧決定に `superseded by <new-title>` を追記する。

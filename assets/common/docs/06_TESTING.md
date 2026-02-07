@@ -8,21 +8,34 @@
 
 ## Defines
 - Testing and DoD contract.
-- Local DoDに回す検証範囲（結合/E2E/実外部疎通）
-- fixture/mock/seed の運用方針
+- CI/Localで実施する検証範囲を定義する。
+- テストデータと責務分担の方針を定義する。
 
 ## CI DoD (must)
-- lint
-- typecheck
-- unit tests
-（※コマンド名はAGENTS.md / CI workflowに合わせる）
+- Required checks:
+  - lint: （実行コマンドと対象範囲）
+  - typecheck: （実行コマンドと対象範囲）
+  - unit tests: （実行コマンド、対象モジュール、成功条件）
+- Gate rule: （失敗時のマージ可否）
+- Command source: （AGENTS.md / CI workflow に合わせる）
 
 ## CI rules
-- 外部APIへ直接接続しない（fixtures/mock）
-- DBが必要なら「捨てDB + 最小seed」
-- E2E/結合はLocal DoDへ
+- External dependency policy: （外部API直接接続可否）
+- Test data policy: （fixture/mock/seed）
+- Ephemeral DB policy: （一時DB利用有無、初期化方法、破棄タイミング）
+- Flaky test policy: （不安定テストの判定条件と対応手順）
+- Retry policy（必要な場合）: （再実行回数、対象条件、記録方法）
 
 ## Local DoD
-- 結合テスト（開発環境前提）
-- 実外部API疎通
-- 決済/Webhook/メール等の疎通
+- Integration tests: （ローカルで実施する統合テストの範囲と手順）
+- Real external connectivity checks: （実外部接続確認の対象と実施条件）
+- Critical flows: （決済/Webhook/メール等）
+- Manual verification checklist link: （`docs/08_RUNBOOK.md`）
+
+## Test matrix
+### `<scope>`
+- Objective: （このテスト群で保証する目的）
+- Test type: （unit/integration/e2e/manual）
+- Environment: （実行環境。local/ci/staging など）
+- Required data: （必要なfixture/mock/seedデータ）
+- Pass criteria: （合格条件。件数、結果、失敗許容の有無）

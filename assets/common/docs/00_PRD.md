@@ -8,27 +8,28 @@
 
 ## Defines
 - Project overview and MVP direction.
-- MVPで提供する価値
-- 今回やらないこと（Non-goals）
+- 課題・対象ユーザー・提供価値を定義する。
+- MVP範囲と非ゴールを定義する。
+
+## Out of scope
+- 画面遷移、API入出力、DB設計などの詳細仕様はここに書かない。
+- 実装手順やIssueの進行管理はここに書かない。
 
 ## Summary
 - （このプロジェクトが何を提供するか。1〜2行）
 
 ## Goal
-- （達成したい価値）
-- （対象ユーザーと目的）
+- （達成したい事業目標）
 
 ## Non-goals
-- （今回はやらないこと）
-- （後回しにすること）
+- （実装しない内容）
 
 ## MVP (must)
-- [ ] （MVPの機能）
-- [ ] （MVPの機能）
-
-## Assumptions / Constraints
-- （前提条件）
-- （制約: 期限、予算、依存、法令/規約など）
+- `<feature>`: （提供価値）
+- `<feature>`: （提供価値）
+- `<feature>`: （提供価値）
 
 ## Open questions（必要に応じて）
-- （未決事項があれば記載）
+### `<question>`
+- Why unresolved: （未確定の理由）
+- Due limit: （決定期限）

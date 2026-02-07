@@ -17,7 +17,7 @@
 
 ## 参照順と役割
 - **00_PRD.md**: 概要 / 目的 / MVP / 非ゴール / 前提と制約 / 未決事項
-- **01_SCOPE.md**: 機能一覧と優先度（MVP / Next / Later）
+- **01_SCOPE.md**: 機能スコープ（実装対象の範囲）
 - **02_UX.md**: 画面、状態（loading/ok/error）、更新ポリシー
 - **03_API.md**: API契約（入出力・エラー・キャッシュ・レート制限）
 - **04_DATA.md**: データモデル（テーブル/制約/プラン差/認可）
@@ -25,7 +25,7 @@
 - **06_TESTING.md**: CI DoD / Local DoD、fixture/seed方針
 - **07_SECURITY.md**: セキュリティ要件（認証/認可、保護対象、Secrets、監査、検証）
 - **08_RUNBOOK.md**: 手動スモーク、リリース前チェック、環境変数、障害対応
-- **09_DECISIONS.md**: 決定ログ（日付・結論・理由だけ）
+- **09_DECISIONS.md**: 確定した意思決定ログ（変更判断の日付・結論・理由）
 - **10_IMPLEMENTATION_PLAN.md**: 実装計画（マイルストーン/成果/DoD/リスク/備考）
 - **DEVFLOW.md**: 開始手順とMilestone進行フロー
 - **ISSUE.md**: Issue起票・依存関係・完了判定・命名ルール
@@ -42,4 +42,5 @@
 - CIで回す範囲/fixture/seed → 06_TESTING.md
 - 手動スモーク → 08_RUNBOOK.md
 - 判断が絡む変更 → 09_DECISIONS.md
+- 未着手TODO/保留タスク → backlog/TODO.md
 - Issue起票/依存関係/NFR影響/命名ルール → ISSUE.md

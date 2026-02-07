@@ -13,6 +13,12 @@
 - すべてのIssueは `ISSUE-ID: <ID>` を含む。
 - Issue本文の `Docs` には、`Goal` / `Scope` / `Acceptance Criteria` の判定に直接使うDocsに加えて、設計判断や依存関係の理解に必要な関連Docsも記載する。
 
+## TODO と Issue の切り分け
+- TODO（未着手候補・保留タスク）は `backlog/TODO.md` に記録する。
+- TODO は一次置き場として流動運用し、追加・統合・分割・撤回を許容する。
+- TODO は「今やる」と決まるまで Issue 化しない。
+- 実装着手すると決めた時点で Issue 化し、`backlog/INDEX.md` と `backlog/issues/` に反映する。
+
 ## 依存関係と順序
 - 通常Issueで前提がある場合は `前提ISSUE` セクションに `ISSUE-ID` を列挙する（複数可）。
 - 着手前に `前提ISSUE` の完了を確認し、未完了なら先に前提Issueを消化する。
